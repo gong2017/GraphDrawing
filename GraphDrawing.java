@@ -7,12 +7,14 @@
 import java.io.*;
 import java.util.*;
 
-public class GraphDrawing {
+public class GraphDrawing{
     static String graphName = "COMP4060 Project: ";
     static int numVertices = 0;
 
     public static void main(String[] args) {
+        GraphWindow graphWindow = new GraphWindow();
         userInterface();
+        
         System.out.println("\nDone.");
     }
 
