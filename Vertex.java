@@ -7,8 +7,7 @@
 import java.util.*;
 
 public class Vertex
-{   
-    private boolean visited;
+{
     private ArrayList adjacentVertices;
     private int name;
     

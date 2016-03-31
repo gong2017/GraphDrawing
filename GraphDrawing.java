@@ -11,9 +11,6 @@ public class GraphDrawing
 {
     static String graphName = "COMP4060 Project: ";
     static int numVertices = 0;
-    static ArrayList<Vertex> longestList = null;
-    static int longListLength = 0;
-    static int numInList = 0;
 
     public static void main(String[] args)
     {       
