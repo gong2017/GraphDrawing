@@ -16,25 +16,7 @@ public class Vertex
     public Vertex(int name)
     {
         this.name = name;
-        visited = false;
         adjacentVertices = new ArrayList();
-    }
-    
-    // Returns the visited value. 
-    public boolean getVisited()
-    {
-        return visited;
-    }
-    
-    // Sets the vertex as visited.
-    public void setVisited()
-    {
-        visited = true;
-    }
-    
-    public void setUnvisited()
-    {
-        visited = false;
     }
     
     // Returns the name of the vertex.
