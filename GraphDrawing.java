@@ -7,21 +7,17 @@
 import java.io.*;
 import java.util.*;
 
-public class GraphDrawing
-{
+public class GraphDrawing {
     static String graphName = "COMP4060 Project: ";
     static int numVertices = 0;
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         userInterface();
-
         System.out.println("\nDone.");
     }
 
     // Draws a graph requested by a user. 
-    public static void userInterface()
-    {
+    public static void userInterface() {
         Scanner scanner = new Scanner(System.in);
         int fileChoice;
         String fileName = null;
@@ -37,8 +33,7 @@ public class GraphDrawing
             fileChoice = scanner.nextInt();
             System.out.print("\n");
 
-            switch(fileChoice)
-            {
+            switch (fileChoice) {
                 case(1):
                 fileName = "Mid7.txt";
                 break;
@@ -63,12 +58,10 @@ public class GraphDrawing
                 System.out.println("Not a valid choice");
             }   
 
-            if (fileChoice >= 1 && fileChoice <= 4)
-            {
+            if (fileChoice >= 1 && fileChoice <= 4) {
                 vertexList = readFile(fileName);
 
-                if (vertexList != null)
-                {
+                if (vertexList != null) {
                     printVertices(vertexList);
                 }
             }
@@ -76,10 +69,8 @@ public class GraphDrawing
     }
 
     // Debugging function that prints what is in a list.
-    public static void printVertices(Vertex[] vertexList)
-    {
-        for (int i = 1; i < vertexList.length; i++)
-        {
+    public static void printVertices(Vertex[] vertexList) {
+        for (int i = 1; i < vertexList.length; i++) {
             System.out.println(vertexList[i]);
         }
 
@@ -87,8 +78,7 @@ public class GraphDrawing
     }    
 
     // Reads in the file and returns a vertex list with adjacent vertices.
-    public static Vertex[] readFile(String fileName)
-    {
+    public static Vertex[] readFile(String fileName) {
         // Vsriables to read in the file.
         BufferedReader bufferedReader = null;
         FileReader fileReader = null;
@@ -109,21 +99,18 @@ public class GraphDrawing
             // 0 is not touched because it does not line up with the
             //     vertex numbers. 
             // It is easier to ignore zero.
-            for (int i = 1; i < numVertices+1; i++)
-            {
+            for (int i = 1; i < numVertices+1; i++) {
                 vertexList[i] = new Vertex(i);
             }
 
             // Start processing the file.
             vertexDetails = bufferedReader.readLine().trim();
 
-            while (vertexDetails != null)
-            {
+            while (vertexDetails != null) {
                 String[] vertexVertices = vertexDetails.split(" ");
                 int currentVertex = Integer.parseInt(vertexVertices[0]) * (-1);
 
-                for (int j = 1; j < vertexVertices.length; j++)
-                {
+                for (int j = 1; j < vertexVertices.length; j++) {
                     int vertexToAdd = Integer.parseInt(vertexVertices[j].trim());
                     (vertexList[currentVertex]).addVertex(vertexToAdd);
                     vertexList[vertexToAdd].addVertex(currentVertex);
@@ -131,17 +118,11 @@ public class GraphDrawing
 
                 vertexDetails = bufferedReader.readLine();
             }
-        }
-        catch (FileNotFoundException ex)
-        {
+        } catch (FileNotFoundException ex) {
             System.out.println("File " + fileName + " not found.\n");
-        }
-        catch (IOException ex)
-        {
+        } catch (IOException ex) {
             System.out.println("IOException occurred.");
-        }
-        finally
-        {
+        } finally {
             try {
                 if (bufferedReader != null) {
                     bufferedReader.close();
