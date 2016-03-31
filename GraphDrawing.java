@@ -13,14 +13,66 @@ public class GraphDrawing
     static int numVertices = 0;
 
     public static void main(String[] args)
-    {       
-        // Read in the file and build a vertex list.
-        Vertex[] vertexList = readFile();
-
-        // Debugging line that prints out all vertices.
-        printVertices(vertexList);
+    {
+        userInterface();
 
         System.out.println("\nDone.");
+    }
+
+    // Draws a graph requested by a user. 
+    public static void userInterface()
+    {
+        Scanner scanner = new Scanner(System.in);
+        int fileChoice;
+        String fileName = null;
+        Vertex[] vertexList;
+
+        do {
+            System.out.println("File options: "
+                + "\n1: Mid7"
+                + "\n2: Mid9"
+                + "\n3: NonHam24"
+                + "\n4: Thomassen");
+            System.out.print("Choose an option: ");
+            fileChoice = scanner.nextInt();
+            System.out.print("\n");
+
+            switch(fileChoice)
+            {
+                case(1):
+                fileName = "Mid7.txt";
+                break;
+
+                case(2):
+                fileName = "Mid9.txt";
+                break;
+
+                case(3):
+                fileName = "NonHam24";
+                break;
+
+                case(4):
+                fileName = "Thomassen.txt";
+                break;
+
+                case(5):
+                System.out.println("Ending program.");
+                break;
+
+                default:
+                System.out.println("Not a valid choice");
+            }   
+
+            if (fileChoice >= 1 && fileChoice <= 4)
+            {
+                vertexList = readFile(fileName);
+
+                if (vertexList != null)
+                {
+                    printVertices(vertexList);
+                }
+            }
+        } while (fileChoice != 5);
     }
 
     // Debugging function that prints what is in a list.
@@ -35,20 +87,12 @@ public class GraphDrawing
     }    
 
     // Reads in the file and returns a vertex list with adjacent vertices.
-    public static Vertex[] readFile()
+    public static Vertex[] readFile(String fileName)
     {
         // Vsriables to read in the file.
         BufferedReader bufferedReader = null;
         FileReader fileReader = null;
         String line = null;
-        String fileName;
-
-        // Graph files
-        String mid7 = "Mid7.txt";
-        String mid9 = "Mid9.txt";
-        String nonHam24 = "NonHam24.txt";
-        String thomassen = "Thomassen.txt";
-        fileName = thomassen;
 
         Vertex[] vertexList = null;
         String vertexDetails;
@@ -90,7 +134,7 @@ public class GraphDrawing
         }
         catch (FileNotFoundException ex)
         {
-            System.out.println("File " + fileName + " not found.");
+            System.out.println("File " + fileName + " not found.\n");
         }
         catch (IOException ex)
         {
