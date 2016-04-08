@@ -1,6 +1,6 @@
 /**
  * B. Postnikoff
- * Grsph Drawing
+ * Graph Drawing
  * 2016-03-31
  */
 
@@ -14,7 +14,6 @@ public class GraphWindow extends JFrame{
 
     public static void main(String[] args) {        
         userInterface();
-
         System.out.println("\nDone.");
     }
 
@@ -122,7 +121,6 @@ public class GraphWindow extends JFrame{
                 for (int j = 1; j < vertexVertices.length; j++) {
                     int vertexToAdd = Integer.parseInt(vertexVertices[j].trim());
                     (vertexList[currentVertex]).addVertex(vertexToAdd);
-                    //vertexList[vertexToAdd].addVertex(currentVertex);
                 }
 
                 vertexDetails = bufferedReader.readLine();

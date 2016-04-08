@@ -40,6 +40,7 @@ public class DrawPolygon extends JPanel {
 
         if (vertexList != null)
         {
+            // Draws the vertices on the screen
             for ( int i = 1; i < vertexList.length; i++) {                
                 if (x >= getWidth()-50)
                 {
@@ -53,6 +54,7 @@ public class DrawPolygon extends JPanel {
                 x += 50;
             }
 
+            // Draws the edges between vertices on the screen
             for (int k = 1; k < vertexList.length; k++) {
                 currentVertices = vertexList[k].getAdjacentVertices();
 
