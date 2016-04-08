@@ -24,11 +24,13 @@ public class GraphWindow extends JFrame{
         String fileName = null;
         Vertex[] vertexList;        
         
+        // Create window, add graph to it
         GraphWindow graphWindow = new GraphWindow();
         setUpWindow(graphWindow);        
         DrawPolygon graph = new DrawPolygon();
         graphWindow.add(graph);
-
+        
+        // Read input from user. 
         do {
             System.out.println("File options: "
                 + "\n1: Mid7"
@@ -65,6 +67,7 @@ public class GraphWindow extends JFrame{
                 System.out.println("Not a valid choice");
             }   
 
+            // Reads a graph file, if option was chosen
             if (fileChoice >= 1 && fileChoice <= 4) {
                 vertexList = readFile(fileName);
 
@@ -91,7 +94,6 @@ public class GraphWindow extends JFrame{
         BufferedReader bufferedReader = null;
         FileReader fileReader = null;
         String line = null;
-
         Vertex[] vertexList = null;
         String vertexDetails;
 
@@ -114,6 +116,7 @@ public class GraphWindow extends JFrame{
             // Start processing the file.
             vertexDetails = bufferedReader.readLine().trim();
 
+            // While the line is not empty
             while (vertexDetails != null) {
                 String[] vertexVertices = vertexDetails.split(" ");
                 int currentVertex = Integer.parseInt(vertexVertices[0]) * (-1);
