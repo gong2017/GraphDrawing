@@ -7,4 +7,6 @@ comment2.params=vertexList
 comment2.target=void\ printVertices(Vertex[])
 comment3.params=fileName
 comment3.target=Vertex[]\ readFile(java.lang.String)
-numComments=4
+comment4.params=window
+comment4.target=void\ setUpWindow(GraphWindow)
+numComments=5

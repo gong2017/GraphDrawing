@@ -6,29 +6,37 @@
 
 import java.io.*;
 import java.util.*;
+import javax.swing.*;
 
-public class GraphDrawing {
+public class GraphWindow extends JFrame{
     static String graphName = "COMP4060 Project: ";
     static int numVertices = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {        
         userInterface();
+
         System.out.println("\nDone.");
     }
 
     // Draws a graph requested by a user. 
-    public static void userInterface() {
+    public static void userInterface() {        
         Scanner scanner = new Scanner(System.in);
         int fileChoice;
         String fileName = null;
-        Vertex[] vertexList;
+        Vertex[] vertexList;        
+        
+        GraphWindow graphWindow = new GraphWindow();
+        setUpWindow(graphWindow);        
+        DrawPolygon graph = new DrawPolygon();
+        graphWindow.add(graph);
 
         do {
             System.out.println("File options: "
                 + "\n1: Mid7"
                 + "\n2: Mid9"
                 + "\n3: NonHam24"
-                + "\n4: Thomassen");
+                + "\n4: Thomassen"
+                + "\n5: Quit Program.");
             System.out.print("Choose an option: ");
             fileChoice = scanner.nextInt();
             System.out.print("\n");
@@ -61,8 +69,9 @@ public class GraphDrawing {
             if (fileChoice >= 1 && fileChoice <= 4) {
                 vertexList = readFile(fileName);
 
-                if (vertexList != null) {
-                    printVertices(vertexList);
+                if (vertexList != null) {                    
+                    graph.updateVertices(vertexList);
+                    graphWindow.repaint();
                 }
             }
         } while (fileChoice != 5);
@@ -134,5 +143,15 @@ public class GraphDrawing {
         }
 
         return vertexList;
+    }
+
+    // Sets up the window for display
+    public static void setUpWindow(GraphWindow window)
+    {
+        window.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        window.setSize(1000,1000);
+        window.setResizable(false);
+        window.setTitle("Graph Drawing Project");
+        window.setVisible(true);
     }
 }

@@ -10,12 +10,33 @@ public class Vertex
 {
     private ArrayList adjacentVertices;
     private int name;
+    private int x;
+    private int y;
     
     // Constructor for vertex objects
     public Vertex(int name)
     {
         this.name = name;
         adjacentVertices = new ArrayList();
+    }
+    
+    public int getX() {
+        return x;
+    }
+    
+    public void setX(int x)
+    {
+        this.x = x;
+    }
+    
+    public int getY()
+    {
+        return y;
+    }
+    
+    public void setY(int y)
+    {
+        this.y = y;
     }
     
     // Returns the name of the vertex.
