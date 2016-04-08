@@ -34,7 +34,7 @@ public class GraphWindow extends JFrame{
             System.out.println("File options: "
                 + "\n1: Mid7"
                 + "\n2: Mid9"
-                + "\n3: NonHam24"
+                + "\n3: TestFile"
                 + "\n4: Thomassen"
                 + "\n5: Quit Program.");
             System.out.print("Choose an option: ");
@@ -51,7 +51,7 @@ public class GraphWindow extends JFrame{
                 break;
 
                 case(3):
-                fileName = "NonHam24";
+                fileName = "TestFile.txt";
                 break;
 
                 case(4):
@@ -122,7 +122,7 @@ public class GraphWindow extends JFrame{
                 for (int j = 1; j < vertexVertices.length; j++) {
                     int vertexToAdd = Integer.parseInt(vertexVertices[j].trim());
                     (vertexList[currentVertex]).addVertex(vertexToAdd);
-                    vertexList[vertexToAdd].addVertex(currentVertex);
+                    //vertexList[vertexToAdd].addVertex(currentVertex);
                 }
 
                 vertexDetails = bufferedReader.readLine();

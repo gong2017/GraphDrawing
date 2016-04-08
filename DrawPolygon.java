@@ -18,6 +18,8 @@ public class DrawPolygon extends JPanel {
     private Vertex[] vertexList;
     private int x;
     private int y;
+    private ArrayList currentVertices;
+    private Vertex currentVertex;
 
     // Constructor for a graph object
     public DrawPolygon() {
@@ -35,7 +37,7 @@ public class DrawPolygon extends JPanel {
 
         x = 50;
         y = 50;       
-        
+
         if (vertexList != null)
         {
             for ( int i = 1; i < vertexList.length; i++) {                
@@ -43,12 +45,22 @@ public class DrawPolygon extends JPanel {
                 {
                     x = 50;
                     y += 50;
-                }
-                
+                }                
                 g.drawString(String.valueOf(i), x, y);
+
                 vertexList[i].setX(x);
                 vertexList[i].setY(y);
                 x += 50;
+            }
+
+            for (int k = 1; k < vertexList.length; k++) {
+                currentVertices = vertexList[k].getAdjacentVertices();
+
+                for (int j = 0; j < currentVertices.size(); j++) {
+                    currentVertex = vertexList[(int)currentVertices.get(j)];
+
+                    g.drawLine(vertexList[k].getX(), vertexList[k].getY(), currentVertex.getX(), currentVertex.getY());
+                }          
             }
         }
     }
