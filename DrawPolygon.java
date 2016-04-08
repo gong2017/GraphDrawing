@@ -16,6 +16,8 @@ import java.util.*;
 
 public class DrawPolygon extends JPanel {
     private Vertex[] vertexList;
+    private int x;
+    private int y;
 
     // Constructor for a graph object
     public DrawPolygon() {
@@ -31,19 +33,19 @@ public class DrawPolygon extends JPanel {
         //g.translate(getWidth()/2, getHeight()/2); 
         ((Graphics2D) g).setPaint(Color.BLACK);
 
-        int x = 50;
-        int y = 50;       
+        x = 50;
+        y = 50;       
         
         if (vertexList != null)
         {
-            for ( int i = 0; i < vertexList.length; i++) {                
-                if (x >= getWidth()-20)
+            for ( int i = 1; i < vertexList.length; i++) {                
+                if (x >= getWidth()-50)
                 {
                     x = 50;
                     y += 50;
                 }
                 
-                g.drawString(String.valueOf(i+1), x, y);
+                g.drawString(String.valueOf(i), x, y);
                 vertexList[i].setX(x);
                 vertexList[i].setY(y);
                 x += 50;
