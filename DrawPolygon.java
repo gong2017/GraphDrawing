@@ -36,7 +36,7 @@ public class DrawPolygon extends JPanel {
 
         // Starting coordinates for the graph to be displayed.
         x = 50;
-        y = 50;
+        y = 50;        
 
         // Only displays a graph if the list of vertices is not empty. 
         if (vertexList != null)

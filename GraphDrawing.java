@@ -6,9 +6,8 @@
 
 import java.io.*;
 import java.util.*;
-import javax.swing.*;
 
-public class GraphWindow extends JFrame{
+public class GraphDrawing{
     static String graphName = "COMP4060 Project: ";
     static int numVertices = 0;
 
@@ -25,12 +24,10 @@ public class GraphWindow extends JFrame{
         Vertex[] vertexList;        
         
         // Create window, add graph to it
-        GraphWindow graphWindow = new GraphWindow();
-        setUpWindow(graphWindow);        
-        DrawPolygon graph = new DrawPolygon();
-        graphWindow.add(graph);
+        Window window = new Window();
+        window.setUpWindow();
         
-        // Read input from user. 
+        // Read input from user
         do {
             System.out.println("File options: "
                 + "\n1: Mid7"
@@ -72,8 +69,9 @@ public class GraphWindow extends JFrame{
                 vertexList = readFile(fileName);
 
                 if (vertexList != null) {                    
-                    graph.updateVertices(vertexList);
-                    graphWindow.repaint();
+                    window.updateGraphVertices(vertexList);
+                    window.validate();
+                    window.repaint();
                 }
             }
         } while (fileChoice != 5);
@@ -144,15 +142,5 @@ public class GraphWindow extends JFrame{
         }
 
         return vertexList;
-    }
-
-    // Sets up the window for display
-    public static void setUpWindow(GraphWindow window)
-    {
-        window.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        window.setSize(1000,1000);
-        window.setResizable(false);
-        window.setTitle("Graph Drawing Project");
-        window.setVisible(true);
     }
 }
