@@ -14,7 +14,9 @@ public class Window extends JFrame
     GraphPanel graphPanel;
     LinePanel linePanel;
     AestheticsPanel aestheticsPanel;
+    DetailsPanel detailsPanel;
     JPanel optionPanel;
+    JPanel graphingPanel;
     
     public static void main(String[] args)
     {
@@ -30,33 +32,41 @@ public class Window extends JFrame
         this.setResizable(false);
         this.setTitle("Graph Drawing");        
         
-        // Adds the graph display panel
+        
+        // Creates the various graph display panels
+        this.detailsPanel = new DetailsPanel(this);
+        detailsPanel.setPreferredSize(new Dimension(625,50));
+        
         this.graph = new DrawPolygon();
-        graph.setPreferredSize(new Dimension(625, 500));
-        graph.setOpaque(true);
+        graph.setPreferredSize(new Dimension(625, 450));          
+        
         
         // Creates the various option display panels
         this.graphPanel = new GraphPanel(this);
         graphPanel.setPreferredSize(new Dimension(175, 100));
-        graphPanel.setOpaque(true);
         
         this.linePanel = new LinePanel(this);
         linePanel.setPreferredSize(new Dimension(175, 125));
-        linePanel.setOpaque(true);
         
         this.aestheticsPanel = new AestheticsPanel(this);
-        aestheticsPanel.setPreferredSize(new Dimension(175, 275));
-        aestheticsPanel.setOpaque(true);        
+        aestheticsPanel.setPreferredSize(new Dimension(175, 275));              
+        
+        
+        // Creates the graphing panel
+        graphingPanel = new JPanel(new BorderLayout());
+        graphingPanel.add(detailsPanel, BorderLayout.PAGE_START);
+        graphingPanel.add(graph, BorderLayout.PAGE_END);    
         
         // Creates the option panel container panel
-        optionPanel = new JPanel(new BorderLayout());
+        optionPanel = new JPanel(new BorderLayout());        
         optionPanel.add(graphPanel, BorderLayout.PAGE_START);
         optionPanel.add(linePanel, BorderLayout.CENTER);
         optionPanel.add(aestheticsPanel, BorderLayout.PAGE_END);
         
+        
         // Adds the panels to the content pane     
         this.getContentPane().setLayout(new BorderLayout());
-        this.getContentPane().add(graph, BorderLayout.WEST);
+        this.getContentPane().add(graphingPanel, BorderLayout.WEST);
         this.getContentPane().add(optionPanel, BorderLayout.EAST);
         this.setVisible(true);        
     }
@@ -70,5 +80,11 @@ public class Window extends JFrame
     public void updateLineType(int lineType)
     {
         graph.updateLineType(lineType);
+    }
+    
+    // Updates the graph details in the details panel.
+    public void updateDetails(String graphName, int numVertices, int numEdges)
+    {
+        detailsPanel.updateDetails(graphName, numVertices, numEdges);
     }
 }

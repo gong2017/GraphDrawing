@@ -11,10 +11,10 @@ import java.awt.event.*;
 public class AestheticsPanel extends Panel
 {
     private JLabel aesthetics = new JLabel("Choose aesthetics: ");
-    private JCheckBox minVertexDistance = new JCheckBox("Minimize vertex distance");
-    private JCheckBox minEdgeCrossing = new JCheckBox("Minimize edge crossings");
-    private JCheckBox minGraphArea = new JCheckBox("Minimize graph area");
-    private JCheckBox maxSymmetry = new JCheckBox("Maximize symmetry");    
+    private JRadioButton minVertexDistance = new JRadioButton("<html>Minimize vertex<br>distance</html>");
+    private JRadioButton minEdgeCrossing = new JRadioButton("<html>Minimize edge<br>crossings</html>");
+    private JRadioButton minGraphArea = new JRadioButton("Minimize graph area");
+    private JRadioButton maxSymmetry = new JRadioButton("Maximize symmetry");    
     
     // AestheticsPanel object constructor
     public AestheticsPanel(Window window)

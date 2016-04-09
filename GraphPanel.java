@@ -48,21 +48,23 @@ public class GraphPanel extends Panel
     }
     
     // Reads in the file and returns a vertex list with adjacent vertices.
-    public static Vertex[] readFile(String fileName) {
+    public Vertex[] readFile(String fileName) {
         // Variables to read in the file.
         BufferedReader bufferedReader = null;
         FileReader fileReader = null;
         String line = null;
         Vertex[] vertexList = null;
         String vertexDetails;
-        int numVertices;
+        String graphName;
+        int numVertices = 0;
+        int numEdges = 0;
+        
 
         try {
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
 
-            // Throwaway graph name read line
-            bufferedReader.readLine();
+            graphName = bufferedReader.readLine();
             numVertices = Integer.parseInt(bufferedReader.readLine());
             vertexList = new Vertex[numVertices+1];
 
@@ -85,10 +87,13 @@ public class GraphPanel extends Panel
                 for (int j = 1; j < vertexVertices.length; j++) {
                     int vertexToAdd = Integer.parseInt(vertexVertices[j].trim());
                     (vertexList[currentVertex]).addVertex(vertexToAdd);
+                    numEdges++;
                 }
 
                 vertexDetails = bufferedReader.readLine();
             }
+            
+            window.updateDetails(graphName, numVertices, numEdges);
         } catch (FileNotFoundException ex) {
             System.out.println("File " + fileName + " not found.\n");
         } catch (IOException ex) {
