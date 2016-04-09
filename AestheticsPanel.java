@@ -10,6 +10,7 @@ import java.awt.event.*;
 
 public class AestheticsPanel extends JPanel implements ActionListener
 {
+    private Window parentWindow;
     private GridLayout gridLayout = new GridLayout(0,1);
     private JLabel aesthetics = new JLabel("Choose aesthetics: ");
     private JCheckBox minVertexDistance = new JCheckBox("Minimize vertex distance");
@@ -17,8 +18,9 @@ public class AestheticsPanel extends JPanel implements ActionListener
     private JCheckBox minGraphArea = new JCheckBox("Minimize graph area");
     private JCheckBox maxSymmetry = new JCheckBox("Maximize symmetry");    
     
-    public AestheticsPanel()
+    public AestheticsPanel(Window window)
     {
+        parentWindow = window;
         this.setBorder(BorderFactory.createEmptyBorder(0,10,20,0));
         this.setLayout(gridLayout);
         this.add(aesthetics);
@@ -28,6 +30,7 @@ public class AestheticsPanel extends JPanel implements ActionListener
         this.add(maxSymmetry);
     }
     
+    @Override
     public void actionPerformed(ActionEvent e)
     {
         

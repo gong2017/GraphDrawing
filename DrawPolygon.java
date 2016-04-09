@@ -14,6 +14,7 @@ public class DrawPolygon extends JPanel {
     private int y;
     private ArrayList currentVertices;
     private Vertex currentVertex;
+    private int lineType = 0;
 
     // Constructor for a graph object
     public DrawPolygon() {
@@ -56,7 +57,15 @@ public class DrawPolygon extends JPanel {
 
                 for (int j = 0; j < currentVertices.size(); j++) {
                     currentVertex = vertexList[(int)currentVertices.get(j)];
-                    g.drawLine(vertexList[k].getX(), vertexList[k].getY(), currentVertex.getX(), currentVertex.getY());
+
+                    if (lineType == 0) {
+                        g.drawLine(vertexList[k].getX(), vertexList[k].getY(), currentVertex.getX(), currentVertex.getY());
+                    }
+                    else
+                    {
+                        g.drawLine(vertexList[k].getX(), vertexList[k].getY(), currentVertex.getX(), vertexList[k].getY());
+                        g.drawLine(currentVertex.getX(), vertexList[k].getY(), currentVertex.getX(), currentVertex.getY());
+                    }
                 }
             }
         }
@@ -65,5 +74,10 @@ public class DrawPolygon extends JPanel {
     // Updates the list of vertices we are currently processing
     public void updateVertices(Vertex[] vertexList) {
         this.vertexList = vertexList;
+    }
+
+    public void updateLineType(int lineChoice)
+    {
+        lineType = lineChoice;
     }
 }

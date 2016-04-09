@@ -40,11 +40,11 @@ public class Window extends JFrame
         graphPanel.setPreferredSize(new Dimension(175, 100));
         graphPanel.setOpaque(true);
         
-        this.linePanel = new LinePanel();
+        this.linePanel = new LinePanel(this);
         linePanel.setPreferredSize(new Dimension(175, 125));
         linePanel.setOpaque(true);
         
-        this.aestheticsPanel = new AestheticsPanel();
+        this.aestheticsPanel = new AestheticsPanel(this);
         aestheticsPanel.setPreferredSize(new Dimension(175, 275));
         aestheticsPanel.setOpaque(true);        
         
@@ -64,5 +64,11 @@ public class Window extends JFrame
     // Updates the graph in the window
     public void updateGraphVertices(Vertex[] vertexList) {
         graph.updateVertices(vertexList);
+    }    
+    
+    // Updates the line type in the graph
+    public void updateLineType(int lineType)
+    {
+        graph.updateLineType(lineType);
     }
 }
