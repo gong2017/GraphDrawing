@@ -8,9 +8,6 @@ import java.io.*;
 import java.util.*;
 
 public class GraphDrawing{
-    static String graphName = "COMP4060 Project: ";
-    static int numVertices = 0;
-
     public static void main(String[] args) {        
         userInterface();
         System.out.println("\nDone.");
@@ -25,7 +22,6 @@ public class GraphDrawing{
         
         // Create window, add graph to it
         Window window = new Window();
-        window.setUpWindow();
         
         // Read input from user
         do {
@@ -94,12 +90,14 @@ public class GraphDrawing{
         String line = null;
         Vertex[] vertexList = null;
         String vertexDetails;
+        int numVertices;
 
         try {
             fileReader = new FileReader(fileName);
             bufferedReader = new BufferedReader(fileReader);
 
-            graphName += bufferedReader.readLine();
+            // Throwaway graph name read line
+            bufferedReader.readLine();
             numVertices = Integer.parseInt(bufferedReader.readLine());
             vertexList = new Vertex[numVertices+1];
 

@@ -3,16 +3,10 @@
  * Graph
  * 2016-03-31
  */
-import java.awt.Color;
-import java.awt.geom.Path2D;
-import java.awt.Graphics2D;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Polygon; 
+
 import javax.swing.*;
-import javax.swing.JFrame;
-import java.math.*;
 import java.util.*;
+import java.awt.*;
 
 public class DrawPolygon extends JPanel {
     private Vertex[] vertexList;
@@ -62,7 +56,6 @@ public class DrawPolygon extends JPanel {
 
                 for (int j = 0; j < currentVertices.size(); j++) {
                     currentVertex = vertexList[(int)currentVertices.get(j)];
-
                     g.drawLine(vertexList[k].getX(), vertexList[k].getY(), currentVertex.getX(), currentVertex.getY());
                 }
             }

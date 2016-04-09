@@ -1,8 +1,6 @@
 #BlueJ class context
 comment0.params=
 comment0.target=Window()
-comment1.params=
-comment1.target=void\ setUpWindow()
-comment2.params=vertexList
-comment2.target=void\ updateGraphVertices(Vertex[])
-numComments=3
+comment1.params=vertexList
+comment1.target=void\ updateGraphVertices(Vertex[])
+numComments=2
