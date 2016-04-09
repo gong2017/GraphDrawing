@@ -1,11 +1,6 @@
 2016-03-31:
 Programming started.
 
-2016-03-31:
-Able to read in file, create adjacency lists, and display vertices.
-
-2016-03-31: 
-Added a basic UI that allows user to pick a graph to display.
-
-2016-03-31:
-Code added to gracefully handle "file not found" errors. 
+2016-04-09:
+Point of program is to show that how data is represented can greatly alter how you think about it.
+Changing how data is presented can show new patterns.

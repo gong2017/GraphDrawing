@@ -16,9 +16,16 @@ public class AestheticsPanel extends Panel
     private JCheckBox minGraphArea = new JCheckBox("Minimize graph area");
     private JCheckBox maxSymmetry = new JCheckBox("Maximize symmetry");    
     
+    // AestheticsPanel object constructor
     public AestheticsPanel(Window window)
     {
         super(window);
+        
+        minVertexDistance.addActionListener(this);
+        minEdgeCrossing.addActionListener(this);
+        minGraphArea.addActionListener(this);
+        maxSymmetry.addActionListener(this);
+        
         this.add(aesthetics);
         this.add(minVertexDistance);
         this.add(minEdgeCrossing);
@@ -26,9 +33,10 @@ public class AestheticsPanel extends Panel
         this.add(maxSymmetry);
     }
     
+    // Repaints the graph based on the aesthetic choices of the user
     @Override
     public void actionPerformed(ActionEvent e)
     {
-        
+        window.repaint();
     }
 }

@@ -24,22 +24,32 @@ public class GraphPanel extends Panel
         this.graphList = new JComboBox(graphStringList);
         graphList.addActionListener(this);
         this.add(graphLabel);
-        this.add(graphList);        
+        this.add(graphList);
+        
+        graphList.setSelectedItem("TestFile");
+        updateGraph();
     }
     
+    // Updates the graph shown based on the combobox choice.
     @Override
     public void actionPerformed(ActionEvent e)
+    {
+        updateGraph();
+    }
+    
+    public void updateGraph()
     {
         String fileName = graphList.getSelectedItem().toString();
         fileName += ".txt";
         vertexList = readFile(fileName);
+        
         window.updateGraphVertices(vertexList);
-        window.repaint();
+        window.repaint();        
     }
     
     // Reads in the file and returns a vertex list with adjacent vertices.
     public static Vertex[] readFile(String fileName) {
-        // Vsriables to read in the file.
+        // Variables to read in the file.
         BufferedReader bufferedReader = null;
         FileReader fileReader = null;
         String line = null;
@@ -97,7 +107,7 @@ public class GraphPanel extends Panel
         return vertexList;
     }    
     
-    // Debugging function that prints what is in a list.
+    // Debugging function that prints what is in the list of vertices.
     public static void printVertices(Vertex[] vertexList) {
         for (int i = 1; i < vertexList.length; i++) {
             System.out.println(vertexList[i]);

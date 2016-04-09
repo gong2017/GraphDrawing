@@ -76,6 +76,7 @@ public class DrawPolygon extends JPanel {
         this.vertexList = vertexList;
     }
 
+    // Updates the line type to display in the graph
     public void updateLineType(int lineChoice)
     {
         lineType = lineChoice;
