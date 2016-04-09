@@ -8,10 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class AestheticsPanel extends JPanel implements ActionListener
+public class AestheticsPanel extends Panel
 {
-    private Window parentWindow;
-    private GridLayout gridLayout = new GridLayout(0,1);
     private JLabel aesthetics = new JLabel("Choose aesthetics: ");
     private JCheckBox minVertexDistance = new JCheckBox("Minimize vertex distance");
     private JCheckBox minEdgeCrossing = new JCheckBox("Minimize edge crossings");
@@ -20,9 +18,7 @@ public class AestheticsPanel extends JPanel implements ActionListener
     
     public AestheticsPanel(Window window)
     {
-        parentWindow = window;
-        this.setBorder(BorderFactory.createEmptyBorder(0,10,20,0));
-        this.setLayout(gridLayout);
+        super(window);
         this.add(aesthetics);
         this.add(minVertexDistance);
         this.add(minEdgeCrossing);
