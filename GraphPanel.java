@@ -10,10 +10,8 @@ import java.awt.*;
 import java.util.*;
 import java.io.*;
 
-public class GraphPanel extends JPanel implements ActionListener
+public class GraphPanel extends Panel
 {
-    private Window parentWindow;
-    private GridLayout gridLayout = new GridLayout(0,1);
     private JLabel graphLabel = new JLabel("Choose graph: ");
     private String[] graphStringList = {"Mid7", "Mid9", "TestFile", "Thomassen"}; 
     private JComboBox graphList;
@@ -22,9 +20,7 @@ public class GraphPanel extends JPanel implements ActionListener
     // Button Panel constructor
     public GraphPanel(Window window)
     {
-        parentWindow = window;
-        this.setBorder(BorderFactory.createEmptyBorder(0,10,20,0));
-        this.setLayout(gridLayout);
+        super(window);
         this.graphList = new JComboBox(graphStringList);
         graphList.addActionListener(this);
         this.add(graphLabel);
@@ -37,8 +33,8 @@ public class GraphPanel extends JPanel implements ActionListener
         String fileName = graphList.getSelectedItem().toString();
         fileName += ".txt";
         vertexList = readFile(fileName);
-        parentWindow.updateGraphVertices(vertexList);
-        parentWindow.repaint();
+        window.updateGraphVertices(vertexList);
+        window.repaint();
     }
     
     // Reads in the file and returns a vertex list with adjacent vertices.
