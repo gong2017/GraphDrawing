@@ -20,11 +20,13 @@ public class AestheticsPanel extends Panel
     public AestheticsPanel(Window window)
     {
         super(window);
-        
+        this.setBorder(BorderFactory.createEmptyBorder(0,10,180,0));
+                
         minVertexDistance.addActionListener(this);
         minEdgeCrossing.addActionListener(this);
         minGraphArea.addActionListener(this);
         maxSymmetry.addActionListener(this);
+        maxSymmetry.setSelected(true);
         
         this.add(aesthetics);
         this.add(minVertexDistance);
@@ -37,6 +39,39 @@ public class AestheticsPanel extends Panel
     @Override
     public void actionPerformed(ActionEvent e)
     {
+        if (e.getSource() == minVertexDistance)
+        {
+            minVertexDistance.setSelected(true);
+            minEdgeCrossing.setSelected(false);
+            minGraphArea.setSelected(false);
+            maxSymmetry.setSelected(false);
+            window.updateAesthetic(0);
+        }
+        else if (e.getSource() == minEdgeCrossing)
+        {
+            minVertexDistance.setSelected(false);
+            minEdgeCrossing.setSelected(true);
+            minGraphArea.setSelected(false);
+            maxSymmetry.setSelected(false); 
+            window.updateAesthetic(1);            
+        }
+        else if (e.getSource() == minGraphArea)
+        {
+            minVertexDistance.setSelected(false);
+            minEdgeCrossing.setSelected(false);
+            minGraphArea.setSelected(true);
+            maxSymmetry.setSelected(false);            
+            window.updateAesthetic(2);            
+        }
+        else
+        {
+            minVertexDistance.setSelected(false);
+            minEdgeCrossing.setSelected(false);
+            minGraphArea.setSelected(false);
+            maxSymmetry.setSelected(true);            
+            window.updateAesthetic(3);            
+        }
+        
         window.repaint();
     }
 }

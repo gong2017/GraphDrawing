@@ -7,14 +7,15 @@
 import javax.swing.*;
 import java.util.*;
 import java.awt.*;
+import java.awt.Font;
 
 public class DrawPolygon extends JPanel {
     private Vertex[] vertexList;
-    private int x;
-    private int y;
     private ArrayList currentVertices;
     private Vertex currentVertex;
     private int lineType = 0;
+    private int currentAesthetic = 4;
+    private Font f = new Font("Monospaced", Font.BOLD, 14);
 
     // Constructor for a graph object
     public DrawPolygon() {
@@ -27,28 +28,12 @@ public class DrawPolygon extends JPanel {
     public void paintComponent(Graphics g) 
     {
         super.paintComponent(g);
-        ((Graphics2D) g).setPaint(Color.BLACK);
-
-        // Starting coordinates for the graph to be displayed.
-        x = 50;
-        y = 50;        
+        ((Graphics2D) g).setPaint(Color.BLACK); 
 
         // Only displays a graph if the list of vertices is not empty. 
         if (vertexList != null)
         {
-            // Draws the vertices on the screen
-            for ( int i = 1; i < vertexList.length; i++) {
-                if (x >= getWidth()-50)
-                {
-                    x = 50;
-                    y += 50;
-                }
-                g.drawString(String.valueOf(i), x, y);
-
-                vertexList[i].setX(x);
-                vertexList[i].setY(y);
-                x += 50;
-            }
+            giveVerticesCoordinates();            
 
             // Draws the edges between the vertices on the screen
             for (int k = 1; k < vertexList.length; k++) {
@@ -57,6 +42,7 @@ public class DrawPolygon extends JPanel {
 
                 for (int j = 0; j < currentVertices.size(); j++) {
                     currentVertex = vertexList[(int)currentVertices.get(j)];
+                    ((Graphics2D)g).setStroke(new BasicStroke(3));
 
                     if (lineType == 0) {
                         g.drawLine(vertexList[k].getX(), vertexList[k].getY(), currentVertex.getX(), currentVertex.getY());
@@ -68,7 +54,35 @@ public class DrawPolygon extends JPanel {
                     }
                 }
             }
+            
+            
+            // Draws the vertices on the screen
+            for ( int i = 1; i < vertexList.length; i++) {
+                ((Graphics2D)g).setPaint(new Color(0, 153, 255));
+                g.fillOval((vertexList[i].getX())-(30/2), (vertexList[i].getY())-(30/2), 30, 30);
+                ((Graphics2D)g).setPaint(Color.BLACK);
+                g.setFont(f);
+                g.drawString(String.valueOf(i), vertexList[i].getX()-5, vertexList[i].getY()+5);
+            }            
         }
+    }
+
+    public void giveVerticesCoordinates()
+    {
+        int x = 50;
+        int y = 50;
+
+        for ( int i = 1; i < vertexList.length; i++) {
+            if (x >= getWidth()-50)
+            {
+                x = 50;
+                y += 50;
+            }
+
+            vertexList[i].setX(x);
+            vertexList[i].setY(y);
+            x += 50;
+        }        
     }
 
     // Updates the list of vertices we are currently processing
@@ -80,5 +94,11 @@ public class DrawPolygon extends JPanel {
     public void updateLineType(int lineChoice)
     {
         lineType = lineChoice;
+    }
+
+    // Updates the current aesthetical graph choice
+    public void updateAesthetic(int aesthetic)
+    {
+        currentAesthetic = aesthetic;
     }
 }

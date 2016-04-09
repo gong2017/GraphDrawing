@@ -35,21 +35,21 @@ public class Window extends JFrame
         
         // Creates the various graph display panels
         this.detailsPanel = new DetailsPanel(this);
-        detailsPanel.setPreferredSize(new Dimension(625,50));
-        
+        detailsPanel.setMaximumSize(new Dimension(625,50));
+     
         this.graph = new DrawPolygon();
         graph.setPreferredSize(new Dimension(625, 450));          
         
         
         // Creates the various option display panels
         this.graphPanel = new GraphPanel(this);
-        graphPanel.setPreferredSize(new Dimension(175, 100));
+        graphPanel.setPreferredSize(new Dimension(175, 75));
         
         this.linePanel = new LinePanel(this);
-        linePanel.setPreferredSize(new Dimension(175, 125));
+        linePanel.setPreferredSize(new Dimension(175, 100));
         
         this.aestheticsPanel = new AestheticsPanel(this);
-        aestheticsPanel.setPreferredSize(new Dimension(175, 275));              
+        aestheticsPanel.setPreferredSize(new Dimension(175, 325));              
         
         
         // Creates the graphing panel
@@ -86,5 +86,10 @@ public class Window extends JFrame
     public void updateDetails(String graphName, int numVertices, int numEdges)
     {
         detailsPanel.updateDetails(graphName, numVertices, numEdges);
+    }
+    
+    public void updateAesthetic(int aesthetic)
+    {
+        graph.updateAesthetic(aesthetic);
     }
 }
