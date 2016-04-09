@@ -9,4 +9,6 @@ comment3.params=lineType
 comment3.target=void\ updateLineType(int)
 comment4.params=graphName\ numVertices\ numEdges
 comment4.target=void\ updateDetails(java.lang.String,\ int,\ int)
-numComments=5
+comment5.params=aesthetic
+comment5.target=void\ updateAesthetic(int)
+numComments=6

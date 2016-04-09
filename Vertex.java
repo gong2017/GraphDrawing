@@ -22,7 +22,7 @@ public class Vertex
     
     // Gets the x coordinate of the vertex
     public int getX() {
-        return x;
+        return x+5;
     }
     
     // Sets the x coordinate of the vertex
@@ -34,7 +34,7 @@ public class Vertex
     // Gets the y coordinate of the vertex
     public int getY()
     {
-        return y;
+        return y-5;
     }
     
     // Sets the y coordinate of the vertex
