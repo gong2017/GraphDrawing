@@ -11,7 +11,15 @@ import java.util.*;
 public class Window extends JFrame
 {
     DrawPolygon graph;
-    ButtonPanel buttonPanel;
+    GraphPanel graphPanel;
+    LinePanel linePanel;
+    AestheticsPanel aestheticsPanel;
+    JPanel optionPanel;
+    
+    public static void main(String[] args)
+    {
+        Window window = new Window();
+    }
     
     // Constructor for the window
     public Window()
@@ -27,15 +35,29 @@ public class Window extends JFrame
         graph.setPreferredSize(new Dimension(625, 500));
         graph.setOpaque(true);
         
-        // Adds the button display panel
-        this.buttonPanel = new ButtonPanel();
-        buttonPanel.setPreferredSize(new Dimension(175, 500));
-        buttonPanel.setOpaque(true);
+        // Creates the various option display panels
+        this.graphPanel = new GraphPanel(this);
+        graphPanel.setPreferredSize(new Dimension(175, 100));
+        graphPanel.setOpaque(true);
         
-        // Adds the panels to the content pane
+        this.linePanel = new LinePanel();
+        linePanel.setPreferredSize(new Dimension(175, 125));
+        linePanel.setOpaque(true);
+        
+        this.aestheticsPanel = new AestheticsPanel();
+        aestheticsPanel.setPreferredSize(new Dimension(175, 275));
+        aestheticsPanel.setOpaque(true);
+        
+        // Creates the option panel container panel
+        optionPanel = new JPanel(new BorderLayout());
+        optionPanel.add(graphPanel, BorderLayout.PAGE_START);
+        optionPanel.add(linePanel, BorderLayout.CENTER);
+        optionPanel.add(aestheticsPanel, BorderLayout.PAGE_END);
+        
+        // Adds the panels to the content pane     
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add(graph, BorderLayout.WEST);
-        this.getContentPane().add(buttonPanel, BorderLayout.EAST);
+        this.getContentPane().add(optionPanel, BorderLayout.EAST);
         this.setVisible(true);        
     }
     

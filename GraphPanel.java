@@ -1,87 +1,46 @@
 /**
  * B. Postnikoff
- * Graph Drawing
- * 2016-03-31
+ * Graph Panel
+ * 2016-04-08
  */
 
-import java.io.*;
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
 import java.util.*;
+import java.io.*;
 
-public class GraphDrawing{
-    public static void main(String[] args) {        
-        userInterface();
-        System.out.println("\nDone.");
+public class GraphPanel extends JPanel implements ActionListener
+{
+    private Window parentWindow;
+    private GridLayout gridLayout = new GridLayout(0,1);
+    private JLabel graphLabel = new JLabel("Choose graph: ");
+    private String[] graphStringList = {"Mid7", "Mid9", "TestFile", "Thomassen"}; 
+    private JComboBox graphList;
+    private Vertex[] vertexList;
+
+    // Button Panel constructor
+    public GraphPanel(Window window)
+    {
+        parentWindow = window;
+        this.setBorder(BorderFactory.createEmptyBorder(0,10,20,0));
+        this.setLayout(gridLayout);
+        this.graphList = new JComboBox(graphStringList);
+        graphList.addActionListener(this);
+        this.add(graphLabel);
+        this.add(graphList);        
     }
-
-    // Draws a graph requested by a user. 
-    public static void userInterface() {        
-        Scanner scanner = new Scanner(System.in);
-        int fileChoice;
-        String fileName = null;
-        Vertex[] vertexList;        
-        
-        // Create window, add graph to it
-        Window window = new Window();
-        
-        // Read input from user
-        do {
-            System.out.println("File options: "
-                + "\n1: Mid7"
-                + "\n2: Mid9"
-                + "\n3: TestFile"
-                + "\n4: Thomassen"
-                + "\n5: Quit Program.");
-            System.out.print("Choose an option: ");
-            fileChoice = scanner.nextInt();
-            System.out.print("\n");
-
-            switch (fileChoice) {
-                case(1):
-                fileName = "Mid7.txt";
-                break;
-
-                case(2):
-                fileName = "Mid9.txt";
-                break;
-
-                case(3):
-                fileName = "TestFile.txt";
-                break;
-
-                case(4):
-                fileName = "Thomassen.txt";
-                break;
-
-                case(5):
-                System.out.println("Ending program.");
-                break;
-
-                default:
-                System.out.println("Not a valid choice");
-            }   
-
-            // Reads a graph file, if option was chosen
-            if (fileChoice >= 1 && fileChoice <= 4) {
-                vertexList = readFile(fileName);
-
-                if (vertexList != null) {                    
-                    window.updateGraphVertices(vertexList);
-                    window.validate();
-                    window.repaint();
-                }
-            }
-        } while (fileChoice != 5);
+    
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        String fileName = graphList.getSelectedItem().toString();
+        fileName += ".txt";
+        vertexList = readFile(fileName);
+        parentWindow.updateGraphVertices(vertexList);
+        parentWindow.repaint();
     }
-
-    // Debugging function that prints what is in a list.
-    public static void printVertices(Vertex[] vertexList) {
-        for (int i = 1; i < vertexList.length; i++) {
-            System.out.println(vertexList[i]);
-        }
-
-        System.out.println("\n");
-    }    
-
+    
     // Reads in the file and returns a vertex list with adjacent vertices.
     public static Vertex[] readFile(String fileName) {
         // Vsriables to read in the file.
@@ -140,5 +99,14 @@ public class GraphDrawing{
         }
 
         return vertexList;
-    }
+    }    
+    
+    // Debugging function that prints what is in a list.
+    public static void printVertices(Vertex[] vertexList) {
+        for (int i = 1; i < vertexList.length; i++) {
+            System.out.println(vertexList[i]);
+        }
+
+        System.out.println("\n");
+    }      
 }
