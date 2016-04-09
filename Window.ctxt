@@ -7,4 +7,6 @@ comment2.params=vertexList
 comment2.target=void\ updateGraphVertices(Vertex[])
 comment3.params=lineType
 comment3.target=void\ updateLineType(int)
-numComments=4
+comment4.params=graphName\ numVertices\ numEdges
+comment4.target=void\ updateDetails(java.lang.String,\ int,\ int)
+numComments=5
