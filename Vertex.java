@@ -20,20 +20,24 @@ public class Vertex
         adjacentVertices = new ArrayList();
     }
     
+    // Gets the x coordinate of the vertex
     public int getX() {
         return x;
     }
     
+    // Sets the x coordinate of the vertex
     public void setX(int x)
     {
         this.x = x;
     }
     
+    // Gets the y coordinate of the vertex
     public int getY()
     {
         return y;
     }
     
+    // Sets the y coordinate of the vertex
     public void setY(int y)
     {
         this.y = y;
