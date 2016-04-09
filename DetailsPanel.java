@@ -28,7 +28,7 @@ public class DetailsPanel extends JPanel
     {      
         this.window = window;
         this.setLayout(new GridLayout(0,3));
-        this.setBorder(BorderFactory.createEmptyBorder(0,10,20,0));
+        this.setBorder(BorderFactory.createEmptyBorder(20,10,0,0));
         
         graphNameLabel = new JLabel(graphLabelString);
         graphVerticesLabel = new JLabel(numVerticesLabelString);

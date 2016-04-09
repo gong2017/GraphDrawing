@@ -17,7 +17,7 @@ public abstract class Panel extends JPanel implements ActionListener
     public Panel(Window window)
     {
         this.window = window;
-        this.setBorder(BorderFactory.createEmptyBorder(0,10,20,0));
+        this.setBorder(BorderFactory.createEmptyBorder(15,10,10,0));
         this.setLayout(gridLayout);
     }        
 }
