@@ -24,12 +24,12 @@ public class Window extends JFrame
         
         // Adds the graph display panel
         this.graph = new DrawPolygon();
-        graph.setPreferredSize(new Dimension(400, 500));
+        graph.setPreferredSize(new Dimension(625, 500));
         graph.setOpaque(true);
         
         // Adds the button display panel
         this.buttonPanel = new ButtonPanel();
-        buttonPanel.setPreferredSize(new Dimension(400, 500));
+        buttonPanel.setPreferredSize(new Dimension(175, 500));
         buttonPanel.setOpaque(true);
         
         // Adds the panels to the content pane
