@@ -28,7 +28,7 @@ public class Window extends JFrame
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(800,500);
         this.setResizable(false);
-        this.setTitle("Graph Drawing Project");        
+        this.setTitle("Graph Drawing");        
         
         // Adds the graph display panel
         this.graph = new DrawPolygon();
@@ -46,7 +46,7 @@ public class Window extends JFrame
         
         this.aestheticsPanel = new AestheticsPanel();
         aestheticsPanel.setPreferredSize(new Dimension(175, 275));
-        aestheticsPanel.setOpaque(true);
+        aestheticsPanel.setOpaque(true);        
         
         // Creates the option panel container panel
         optionPanel = new JPanel(new BorderLayout());
