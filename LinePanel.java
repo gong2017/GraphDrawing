@@ -17,7 +17,7 @@ public class LinePanel extends Panel
     // Line panel constructor
     public LinePanel(Window window)
     {
-        super(window);        
+        super(window); 
         this.add(lineLabel);
         lineLabel.setForeground(Color.WHITE);
         

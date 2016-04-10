@@ -28,7 +28,7 @@ public class Window extends JFrame
     {
         // Sets window defaults
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        this.setSize(800,500);
+        this.setSize(800,800);
         this.setResizable(false);
         this.setTitle("Graph Drawing");        
         
@@ -38,7 +38,7 @@ public class Window extends JFrame
         detailsPanel.setMaximumSize(new Dimension(625,50));
      
         this.graph = new DrawPolygon();
-        graph.setPreferredSize(new Dimension(625, 450));          
+        graph.setPreferredSize(new Dimension(625, 750));          
         
         
         // Creates the various option display panels
@@ -49,7 +49,7 @@ public class Window extends JFrame
         linePanel.setPreferredSize(new Dimension(175, 100));
         
         this.aestheticsPanel = new AestheticsPanel(this);
-        aestheticsPanel.setPreferredSize(new Dimension(175, 325));              
+        aestheticsPanel.setPreferredSize(new Dimension(175, 625));              
         
         
         // Creates the graphing panel
