@@ -20,7 +20,8 @@ public class AestheticsPanel extends Panel
     public AestheticsPanel(Window window)
     {
         super(window);
-        this.setBorder(BorderFactory.createEmptyBorder(0,10,480,0));        
+        this.setBorder(BorderFactory.createEmptyBorder(0,10,480,0));
+        
         aesthetics.setForeground(Color.WHITE);
         this.add(aesthetics);        
         

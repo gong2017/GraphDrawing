@@ -24,7 +24,6 @@ public class GraphPanel extends Panel
         this.graphList = new JComboBox(graphStringList);
         graphList.addActionListener(this);
         
-        this.setBackground(Color.BLACK);
         graphLabel.setForeground(Color.WHITE);
         
         this.add(graphLabel);
@@ -41,6 +40,7 @@ public class GraphPanel extends Panel
         updateGraph();
     }
     
+    // Updates the vertex list to represent the current graph. 
     public void updateGraph()
     {
         String fileName = graphList.getSelectedItem().toString();

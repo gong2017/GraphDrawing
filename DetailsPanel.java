@@ -8,10 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class DetailsPanel extends JPanel
-{   
-    private Window window;
-    
+public class DetailsPanel extends Panel
+{      
     private String graphName;
     private String graphNameString = "GraphName:   ";
     private JLabel graphNameLabel;    
@@ -26,10 +24,9 @@ public class DetailsPanel extends JPanel
     
     public DetailsPanel(Window window)
     {      
-        this.window = window;
+        super(window);
         this.setLayout(new GridLayout(0,3));
         this.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
-        this.setBackground(Color.BLACK);
                
         graphNameLabel = new JLabel(graphNameString);
         setLabelDetails(graphNameLabel);
@@ -41,6 +38,7 @@ public class DetailsPanel extends JPanel
         setLabelDetails(numEdgesLabel);           
     }    
     
+    // Sets the detilas of the labels
     public void setLabelDetails(JLabel label)
     {
         label.setForeground(Color.WHITE);
@@ -59,5 +57,11 @@ public class DetailsPanel extends JPanel
         graphNameLabel.setText(graphNameString + graphName);
         numVerticesLabel.setText(numVerticesString + numVertices);
         numEdgesLabel.setText(numEdgesString + numEdges);
+    }
+    
+    // Placeholder 
+    public void actionPerformed(ActionEvent e)
+    {
+        
     }
 }
