@@ -58,7 +58,7 @@ public class DrawPolygon extends JPanel {
             
             // Draws the vertices on the screen
             for ( int i = 1; i < vertexList.length; i++) {
-                ((Graphics2D)g).setPaint(new Color(0, 153, 255));
+                ((Graphics2D)g).setPaint(new Color(255, 102, 102));
                 g.fillOval((vertexList[i].getX())-(30/2), (vertexList[i].getY())-(30/2), 30, 30);
                 ((Graphics2D)g).setPaint(Color.BLACK);
                 g.setFont(f);

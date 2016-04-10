@@ -1,6 +1,8 @@
 #BlueJ class context
 comment0.params=window
 comment0.target=DetailsPanel(Window)
-comment1.params=graphName\ numVertices\ numEdges
-comment1.target=void\ updateDetails(java.lang.String,\ int,\ int)
-numComments=2
+comment1.params=label
+comment1.target=void\ setLabelDetails(javax.swing.JLabel)
+comment2.params=graphName\ numVertices\ numEdges
+comment2.target=void\ updateDetails(java.lang.String,\ int,\ int)
+numComments=3

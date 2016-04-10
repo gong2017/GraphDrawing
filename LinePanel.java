@@ -17,15 +17,22 @@ public class LinePanel extends Panel
     // Line panel constructor
     public LinePanel(Window window)
     {
-        super(window);
-
-        straightLine.setSelected(true);
-        straightLine.addActionListener(this);
-        orthogonalLine.addActionListener(this);
-
+        super(window);        
         this.add(lineLabel);
-        this.add(straightLine);
-        this.add(orthogonalLine);
+        lineLabel.setForeground(Color.WHITE);
+        
+        straightLine.setSelected(true);
+        setButtonDetails(straightLine);
+        setButtonDetails(orthogonalLine);
+    }
+    
+    // Sets the details of the buttons, and adds them to the Panel
+    public void setButtonDetails(JRadioButton button)
+    {
+        button.addActionListener(this);
+        button.setBackground(Color.BLACK);
+        button.setForeground(Color.WHITE);
+        this.add(button);
     }
 
     // Adjusts the display of lines if options are adjusted

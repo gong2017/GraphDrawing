@@ -23,6 +23,10 @@ public class GraphPanel extends Panel
         super(window);
         this.graphList = new JComboBox(graphStringList);
         graphList.addActionListener(this);
+        
+        this.setBackground(Color.BLACK);
+        graphLabel.setForeground(Color.WHITE);
+        
         this.add(graphLabel);
         this.add(graphList);
         

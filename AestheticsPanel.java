@@ -21,18 +21,25 @@ public class AestheticsPanel extends Panel
     {
         super(window);
         this.setBorder(BorderFactory.createEmptyBorder(0,10,180,0));
-                
-        minVertexDistance.addActionListener(this);
-        minEdgeCrossing.addActionListener(this);
-        minGraphArea.addActionListener(this);
-        maxSymmetry.addActionListener(this);
-        maxSymmetry.setSelected(true);
         
-        this.add(aesthetics);
-        this.add(minVertexDistance);
-        this.add(minEdgeCrossing);
-        this.add(minGraphArea);
-        this.add(maxSymmetry);
+        aesthetics.setForeground(Color.WHITE);
+        this.add(aesthetics);        
+        
+        setButtonDetails(minVertexDistance);
+        setButtonDetails(minEdgeCrossing);
+        setButtonDetails(minGraphArea);
+        setButtonDetails(maxSymmetry);
+
+        maxSymmetry.setSelected(true);        
+    }
+    
+    // Sets button details, adds action listener, adds to panel
+    public void setButtonDetails(JRadioButton button)
+    {
+        button.addActionListener(this);
+        button.setBackground(Color.BLACK);
+        button.setForeground(Color.WHITE);
+        this.add(button);
     }
     
     // Repaints the graph based on the aesthetic choices of the user

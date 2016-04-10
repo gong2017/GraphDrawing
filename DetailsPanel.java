@@ -13,31 +13,41 @@ public class DetailsPanel extends JPanel
     private Window window;
     
     private String graphName;
-    private String graphLabelString = "GraphName:   ";
-    private JLabel graphNameLabel;
+    private String graphNameString = "GraphName:   ";
+    private JLabel graphNameLabel;    
     
     private int numVertices;
-    private String numVerticesLabelString = "Number of vertices:   ";
-    private JLabel graphVerticesLabel;
+    private String numVerticesString = "Number of vertices:   ";
+    private JLabel numVerticesLabel;
     
     private int numEdges;
-    private String numEdgesLabelString = "Number of edges:   ";    
-    private JLabel graphEdgesLabel;
+    private String numEdgesString = "Number of edges:   ";    
+    private JLabel numEdgesLabel;
     
     public DetailsPanel(Window window)
     {      
         this.window = window;
         this.setLayout(new GridLayout(0,3));
-        this.setBorder(BorderFactory.createEmptyBorder(20,10,0,0));
+        this.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
+        this.setBackground(Color.BLACK);
+               
+        graphNameLabel = new JLabel(graphNameString);
+        setLabelDetails(graphNameLabel);
         
-        graphNameLabel = new JLabel(graphLabelString);
-        graphVerticesLabel = new JLabel(numVerticesLabelString);
-        graphEdgesLabel = new JLabel(numEdgesLabelString);
+        numVerticesLabel = new JLabel(numVerticesString);
+        setLabelDetails(numVerticesLabel);
         
-        this.add(graphNameLabel);
-        this.add(graphVerticesLabel);
-        this.add(graphEdgesLabel);      
+        numEdgesLabel = new JLabel(numEdgesString);
+        setLabelDetails(numEdgesLabel);           
     }    
+    
+    public void setLabelDetails(JLabel label)
+    {
+        label.setForeground(Color.WHITE);
+        label.setHorizontalAlignment(JLabel.LEFT);
+        label.setVerticalAlignment(JLabel.CENTER);
+        this.add(label);
+    }
     
     // Updates the JLabels based on the graphs details
     public void updateDetails(String graphName, int numVertices, int numEdges)
@@ -46,8 +56,8 @@ public class DetailsPanel extends JPanel
         this.numVertices = numVertices;
         this.numEdges = numEdges;
         
-        graphNameLabel.setText(graphLabelString + graphName);
-        graphVerticesLabel.setText(numVerticesLabelString + numVertices);
-        graphEdgesLabel.setText(numEdgesLabelString + numEdges);
+        graphNameLabel.setText(graphNameString + graphName);
+        numVerticesLabel.setText(numVerticesString + numVertices);
+        numEdgesLabel.setText(numEdgesString + numEdges);
     }
 }
