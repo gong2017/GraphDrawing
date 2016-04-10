@@ -14,23 +14,23 @@ public class AestheticsPanel extends Panel
     private JRadioButton minVertexDistance = new JRadioButton("<html>Minimize vertex<br>distance</html>");
     private JRadioButton minEdgeCrossing = new JRadioButton("<html>Minimize edge<br>crossings</html>");
     private JRadioButton minGraphArea = new JRadioButton("Minimize graph area");
-    private JRadioButton maxSymmetry = new JRadioButton("Maximize symmetry");    
+    private JRadioButton maxSymmetry = new JRadioButton("Maximize symmetry");
     
     // AestheticsPanel object constructor
     public AestheticsPanel(Window window)
     {
         super(window);
         this.setBorder(BorderFactory.createEmptyBorder(0,10,480,0));
-        
+
         aesthetics.setForeground(Color.WHITE);
-        this.add(aesthetics);        
-        
+        this.add(aesthetics);
+
         setButtonDetails(minVertexDistance);
         setButtonDetails(minEdgeCrossing);
         setButtonDetails(minGraphArea);
         setButtonDetails(maxSymmetry);
 
-        maxSymmetry.setSelected(true);        
+        maxSymmetry.setSelected(true);
     }
     
     // Sets button details, adds action listener, adds to panel
@@ -60,25 +60,25 @@ public class AestheticsPanel extends Panel
             minEdgeCrossing.setSelected(true);
             minGraphArea.setSelected(false);
             maxSymmetry.setSelected(false); 
-            window.updateAesthetic(1);            
+            window.updateAesthetic(1);
         }
         else if (e.getSource() == minGraphArea)
         {
             minVertexDistance.setSelected(false);
             minEdgeCrossing.setSelected(false);
             minGraphArea.setSelected(true);
-            maxSymmetry.setSelected(false);            
-            window.updateAesthetic(2);            
+            maxSymmetry.setSelected(false);
+            window.updateAesthetic(2);
         }
         else
         {
             minVertexDistance.setSelected(false);
             minEdgeCrossing.setSelected(false);
             minGraphArea.setSelected(false);
-            maxSymmetry.setSelected(true);            
-            window.updateAesthetic(3);            
+            maxSymmetry.setSelected(true);
+            window.updateAesthetic(3);
         }
-        
+
         window.repaint();
     }
 }

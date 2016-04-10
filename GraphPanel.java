@@ -23,12 +23,12 @@ public class GraphPanel extends Panel
         super(window);
         this.graphList = new JComboBox(graphStringList);
         graphList.addActionListener(this);
-        
+
         graphLabel.setForeground(Color.WHITE);
-        
+
         this.add(graphLabel);
         this.add(graphList);
-        
+
         graphList.setSelectedItem("TestFile");
         updateGraph();
     }
@@ -48,7 +48,7 @@ public class GraphPanel extends Panel
         vertexList = readFile(fileName);
         
         window.updateGraphVertices(vertexList);
-        window.repaint();        
+        window.repaint();
     }
     
     // Reads in the file and returns a vertex list with adjacent vertices.
@@ -62,7 +62,6 @@ public class GraphPanel extends Panel
         String graphName;
         int numVertices = 0;
         int numEdges = 0;
-        
 
         try {
             fileReader = new FileReader(fileName);
@@ -96,7 +95,7 @@ public class GraphPanel extends Panel
 
                 vertexDetails = bufferedReader.readLine();
             }
-            
+
             window.updateDetails(graphName, numVertices, numEdges);
         } catch (FileNotFoundException ex) {
             System.out.println("File " + fileName + " not found.\n");
@@ -114,7 +113,7 @@ public class GraphPanel extends Panel
         }
 
         return vertexList;
-    }    
+    }
     
     // Debugging function that prints what is in the list of vertices.
     public static void printVertices(Vertex[] vertexList) {
@@ -123,5 +122,5 @@ public class GraphPanel extends Panel
         }
 
         System.out.println("\n");
-    }      
+    }
 }

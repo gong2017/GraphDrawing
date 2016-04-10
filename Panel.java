@@ -12,7 +12,7 @@ import java.awt.event.*;
 public abstract class Panel extends JPanel implements ActionListener
 {
     protected Window window;
-    protected GridLayout gridLayout = new GridLayout(0,1);    
+    protected GridLayout gridLayout = new GridLayout(0,1);
     
     public Panel(Window window)
     {
@@ -21,5 +21,5 @@ public abstract class Panel extends JPanel implements ActionListener
         this.setLayout(gridLayout);
         this.setBackground(Color.BLACK);
         this.setForeground(Color.WHITE);
-    }        
+    }
 }
