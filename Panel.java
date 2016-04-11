@@ -14,6 +14,7 @@ public abstract class Panel extends JPanel implements ActionListener
     protected Window window;
     protected GridLayout gridLayout = new GridLayout(0,1);
     
+    // Window object constructor
     public Panel(Window window)
     {
         this.window = window;
