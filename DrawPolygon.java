@@ -76,8 +76,6 @@ public class DrawPolygon extends JPanel {
         y = (height/2) * (-1) + 50;        
 
         for ( int i = 1; i < vertexList.length; i++) {
-            System.out.println(i + " " + x + " " + y );
-
             if(!vertexList[i].hasCoordinates()) {
 
                 if (x >= getWidth()/2-50)

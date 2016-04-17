@@ -13,7 +13,7 @@ import java.io.*;
 public class GraphPanel extends Panel
 {
     private JLabel graphLabel = new JLabel("Choose graph: ");
-    private String[] graphStringList = {"Mid7", "Mid9", "TestFile", "Thomassen"}; 
+    private String[] graphStringList = {"TestFile", "StarFile"}; 
     private JComboBox graphList;
     private Vertex[] vertexList;
 
