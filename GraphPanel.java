@@ -32,25 +32,25 @@ public class GraphPanel extends Panel
         graphList.setSelectedItem("TestFile");
         updateGraph();
     }
-    
+
     // Updates the graph shown based on the combobox choice.
     @Override
     public void actionPerformed(ActionEvent e)
     {
         updateGraph();
     }
-    
+
     // Updates the vertex list to represent the current graph. 
     public void updateGraph()
     {
         String fileName = graphList.getSelectedItem().toString();
         fileName += ".txt";
         vertexList = readFile(fileName);
-        
+
         window.updateGraphVertices(vertexList);
         window.repaint();
     }
-    
+
     // Reads in the file and returns a vertex list with adjacent vertices.
     public Vertex[] readFile(String fileName) {
         // Variables to read in the file.
@@ -58,10 +58,14 @@ public class GraphPanel extends Panel
         FileReader fileReader = null;
         String line = null;
         Vertex[] vertexList = null;
+        String[] vertexVertices;
+        int vertexToAdd;
+        int currentVertex;
         String vertexDetails;
         String graphName;
         int numVertices = 0;
         int numEdges = 0;
+        int lastUpdated = 1;
 
         try {
             fileReader = new FileReader(fileName);
@@ -80,17 +84,28 @@ public class GraphPanel extends Panel
             }
 
             // Start processing the file.
-            vertexDetails = bufferedReader.readLine().trim();
+            vertexDetails = bufferedReader.readLine().trim();            
 
             // While the line is not empty
             while (vertexDetails != null) {
-                String[] vertexVertices = vertexDetails.split(" ");
-                int currentVertex = Integer.parseInt(vertexVertices[0]) * (-1);
+                vertexVertices = vertexDetails.split(" ");
+                currentVertex = Integer.parseInt(vertexVertices[0]);
 
-                for (int j = 1; j < vertexVertices.length; j++) {
-                    int vertexToAdd = Integer.parseInt(vertexVertices[j].trim());
-                    (vertexList[currentVertex]).addVertex(vertexToAdd);
-                    numEdges++;
+                if (currentVertex < 0 ) {
+                    currentVertex = currentVertex * (-1);
+                    
+                    for (int j = 1; j < vertexVertices.length; j++) {
+                        vertexToAdd = Integer.parseInt(vertexVertices[j].trim());
+                        (vertexList[currentVertex]).addVertex(vertexToAdd);
+                        numEdges++;
+                    }
+                }
+                else
+                {
+                    vertexList[lastUpdated].setX(Integer.parseInt(vertexVertices[0]));
+                    vertexList[lastUpdated].setY(Integer.parseInt(vertexVertices[1]));
+                    vertexList[lastUpdated].setHasCoordinates();
+                    lastUpdated++;
                 }
 
                 vertexDetails = bufferedReader.readLine();
@@ -114,7 +129,7 @@ public class GraphPanel extends Panel
 
         return vertexList;
     }
-    
+
     // Debugging function that prints what is in the list of vertices.
     public static void printVertices(Vertex[] vertexList) {
         for (int i = 1; i < vertexList.length; i++) {
