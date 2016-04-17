@@ -12,6 +12,7 @@ public class Vertex
     private int name;
     private int x;
     private int y;
+    private boolean hasCoordinates;
 
     // Constructor for vertex objects
     public Vertex(int name)
@@ -59,6 +60,16 @@ public class Vertex
     public void addVertex(int newVertex)
     {
         adjacentVertices.add(newVertex);
+    }
+    
+    // Updates the flag saying a vertex has coordinates;
+    public void setHasCoordinates() {
+        hasCoordinates = true;
+    }
+    
+    // Returns true if the vertex already has coordinates
+    public boolean hasCoordinates() {
+        return hasCoordinates;
     }
 
     // Returns a string representation of the vertex.
