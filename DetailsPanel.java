@@ -1,6 +1,7 @@
 /**
  * B. Postnikoff
  * Details Panel
+ * Displays the details of the graph at the top of the screen
  * 2016-04-09
  */
 
@@ -11,7 +12,7 @@ import java.awt.event.*;
 public class DetailsPanel extends Panel
 {      
     private String graphName;
-    private String graphNameString = "GraphName:   ";
+    private String graphNameString = "Graph Name:   ";
     private JLabel graphNameLabel;    
     
     private int numVertices;
@@ -22,6 +23,7 @@ public class DetailsPanel extends Panel
     private String numEdgesString = "Number of edges:   ";    
     private JLabel numEdgesLabel;
     
+    // Details panel constructor
     public DetailsPanel(Window window)
     {      
         super(window);
@@ -60,8 +62,5 @@ public class DetailsPanel extends Panel
     }
     
     // Placeholder 
-    public void actionPerformed(ActionEvent e)
-    {
-        
-    }
+    public void actionPerformed(ActionEvent e) { }
 }

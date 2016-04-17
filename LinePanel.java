@@ -1,6 +1,7 @@
 /**
  * B. Postnikoff
  * Line Panel
+ * Line settings control pnael.
  * 2016-04-09
  */
 

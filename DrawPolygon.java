@@ -13,11 +13,9 @@ public class DrawPolygon extends JPanel {
     private Vertex[] vertexList;
     private ArrayList<Integer> currentVertices;
     private Vertex currentVertex;
-    private int lineType = 0;
+    private int lineType = 0; // Straight line
     private int currentAesthetic = 4;
     private Font f = new Font("Monospaced", Font.BOLD, 14);
-    private int x;
-    private int y;
 
     // Constructor for a graph object
     public DrawPolygon() {
@@ -36,6 +34,7 @@ public class DrawPolygon extends JPanel {
         // Only displays a graph if the list of vertices is not empty.
         if (vertexList != null)
         {
+            // Gives coordinates to the vertices without coordinates
             giveVerticesCoordinates(getWidth(), getHeight());
 
             // Draws the edges between the vertices on the screen
@@ -72,8 +71,8 @@ public class DrawPolygon extends JPanel {
     // Give initial coordinates to the vertices
     public void giveVerticesCoordinates(int width, int height)
     {
-        x = (width/2) * (-1) + 50;
-        y = ((height/2) * (-1)) + 50;        
+        int x = (width/2) * (-1) + 50;
+        int y = ((height/2) * (-1)) + 50;        
 
         for ( int i = 1; i < vertexList.length; i++) {            
             if(!vertexList[i].hasCoordinates()) {

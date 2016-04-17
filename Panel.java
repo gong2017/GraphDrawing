@@ -1,6 +1,7 @@
 /**
  * B. Postnikoff
  * Panel
+ * Abstract panel class, used as base for other panels
  * 2016-04-09
  */
 

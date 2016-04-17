@@ -1,6 +1,7 @@
 /**
  * B. Postnikoff
  * Aesthetics Panel
+ * Holds the aestheic controls for the graph
  * 2016-04-09
  */
 
@@ -25,6 +26,7 @@ public class AestheticsPanel extends Panel
         aesthetics.setForeground(Color.WHITE);
         this.add(aesthetics);
 
+        // Set properties of buttons, add to panel
         setButtonDetails(minVertexDistance);
         setButtonDetails(minEdgeCrossing);
         setButtonDetails(minGraphArea);
