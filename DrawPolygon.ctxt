@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=DrawPolygon()
+comment1.params=g
+comment1.target=void\ paintComponent(java.awt.Graphics)
+comment2.params=width\ height
+comment2.target=void\ giveVerticesCoordinates(int,\ int)
+comment3.params=vertexList
+comment3.target=void\ updateVertices(Vertex[])
+comment4.params=lineChoice
+comment4.target=void\ updateLineType(int)
+comment5.params=aesthetic
+comment5.target=void\ updateAesthetic(int)
+numComments=6
