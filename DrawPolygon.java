@@ -11,7 +11,7 @@ import java.awt.Font;
 
 public class DrawPolygon extends JPanel {
     private Vertex[] vertexList;
-    private ArrayList currentVertices;
+    private ArrayList<Integer> currentVertices;
     private Vertex currentVertex;
     private int lineType = 0;
     private int currentAesthetic = 4;
@@ -39,7 +39,7 @@ public class DrawPolygon extends JPanel {
             giveVerticesCoordinates(getWidth(), getHeight());
 
             // Draws the edges between the vertices on the screen
-            for (int k = 1; k < vertexList.length; k++) {
+            for (int k = 1; k < vertexList.length; k++) {                
                 // Grab the vertex we would like to add edges from.
                 currentVertices = vertexList[k].getAdjacentVertices();
 
@@ -73,11 +73,10 @@ public class DrawPolygon extends JPanel {
     public void giveVerticesCoordinates(int width, int height)
     {
         x = (width/2) * (-1) + 50;
-        y = (height/2) * (-1) + 50;        
+        y = ((height/2) * (-1)) + 50;        
 
-        for ( int i = 1; i < vertexList.length; i++) {
+        for ( int i = 1; i < vertexList.length; i++) {            
             if(!vertexList[i].hasCoordinates()) {
-
                 if (x >= getWidth()/2-50)
                 {
                     x = (width/2) * (-1) + 50;

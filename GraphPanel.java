@@ -66,6 +66,7 @@ public class GraphPanel extends Panel
         int numVertices = 0;
         int numEdges = 0;
         int lastUpdated = 1;
+        boolean coordinateFlag = false;
 
         try {
             fileReader = new FileReader(fileName);
@@ -84,29 +85,37 @@ public class GraphPanel extends Panel
             }
 
             // Start processing the file.
-            vertexDetails = bufferedReader.readLine().trim();            
+            vertexDetails = bufferedReader.readLine().trim();       
 
             // While the line is not empty
-            while (vertexDetails != null) {
-                vertexVertices = vertexDetails.split(" ");
-                currentVertex = Integer.parseInt(vertexVertices[0]);
+            while (vertexDetails != null && !coordinateFlag) {
+                if (vertexDetails.equals("coordinates")) {
+                    coordinateFlag = true;
+                } else {
+                    vertexVertices = vertexDetails.split(" ");
+                    currentVertex = Integer.parseInt(vertexVertices[0]);
 
-                if (currentVertex < 0 ) {
-                    currentVertex = currentVertex * (-1);
-                    
-                    for (int j = 1; j < vertexVertices.length; j++) {
-                        vertexToAdd = Integer.parseInt(vertexVertices[j].trim());
-                        (vertexList[currentVertex]).addVertex(vertexToAdd);
-                        numEdges++;
+                    if (currentVertex < 0 ) {
+                        currentVertex = currentVertex * (-1);
+
+                        for (int j = 1; j < vertexVertices.length; j++) {
+                            vertexToAdd = Integer.parseInt(vertexVertices[j].trim());
+                            (vertexList[currentVertex]).addVertex(vertexToAdd);
+                            numEdges++;
+                        }
                     }
                 }
-                else
-                {
-                    vertexList[lastUpdated].setX(Integer.parseInt(vertexVertices[0]));
-                    vertexList[lastUpdated].setY(Integer.parseInt(vertexVertices[1]));
-                    vertexList[lastUpdated].setHasCoordinates();
-                    lastUpdated++;
-                }
+
+                vertexDetails = bufferedReader.readLine();                
+            }
+
+            while (vertexDetails != null) {
+                vertexVertices = vertexDetails.split(" ");                
+
+                vertexList[lastUpdated].setX(Integer.parseInt(vertexVertices[0]));
+                vertexList[lastUpdated].setY(Integer.parseInt(vertexVertices[1])*(-1));
+                vertexList[lastUpdated].setHasCoordinates();
+                lastUpdated++;
 
                 vertexDetails = bufferedReader.readLine();
             }
@@ -128,14 +137,5 @@ public class GraphPanel extends Panel
         }
 
         return vertexList;
-    }
-
-    // Debugging function that prints what is in the list of vertices.
-    public static void printVertices(Vertex[] vertexList) {
-        for (int i = 1; i < vertexList.length; i++) {
-            System.out.println(vertexList[i]);
-        }
-
-        System.out.println("\n");
     }
 }
