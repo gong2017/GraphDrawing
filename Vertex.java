@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Vertex
 {
-    private ArrayList adjacentVertices;
+    private ArrayList<Integer> adjacentVertices;
     private int name;
     private int x;
     private int y;
@@ -18,7 +18,7 @@ public class Vertex
     public Vertex(int name)
     {
         this.name = name;
-        adjacentVertices = new ArrayList();
+        adjacentVertices = new ArrayList<Integer>();
     }
 
     // Gets the x coordinate of the vertex
@@ -35,7 +35,7 @@ public class Vertex
     // Gets the y coordinate of the vertex
     public int getY()
     {
-        return y-5;
+        return y+5;
     }
 
     // Sets the y coordinate of the vertex
