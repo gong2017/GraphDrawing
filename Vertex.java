@@ -51,7 +51,7 @@ public class Vertex
     }
 
     // Returns the adjacent vertices.
-    public ArrayList getAdjacentVertices()
+    public ArrayList<Integer> getAdjacentVertices()
     {
         return adjacentVertices;
     }
@@ -62,7 +62,7 @@ public class Vertex
         adjacentVertices.add(newVertex);
     }
     
-    // Updates the flag saying a vertex has coordinates;
+    // Updates the flag saying a vertex has coordinates to true
     public void setHasCoordinates() {
         hasCoordinates = true;
     }

@@ -1,6 +1,7 @@
 /**
  * B. Postnikoff
  * Graph Panel
+ * Allows user to select a graph to display
  * 2016-04-08
  */
 
@@ -56,17 +57,18 @@ public class GraphPanel extends Panel
         // Variables to read in the file.
         BufferedReader bufferedReader = null;
         FileReader fileReader = null;
-        String line = null;
+        String vertexDetails;
+
         Vertex[] vertexList = null;
         String[] vertexVertices;
         int vertexToAdd;
         int currentVertex;
-        String vertexDetails;
+        int lastUpdated = 1;
+        boolean coordinateFlag = false;        
+
         String graphName;
         int numVertices = 0;
-        int numEdges = 0;
-        int lastUpdated = 1;
-        boolean coordinateFlag = false;
+        int numEdges = 0;       
 
         try {
             fileReader = new FileReader(fileName);
@@ -77,15 +79,12 @@ public class GraphPanel extends Panel
             vertexList = new Vertex[numVertices+1];
 
             // Initializes each vertex in the graph.
-            // 0 is not touched because it does not line up with the
-            //     vertex numbers. 
-            // It is easier to ignore zero.
             for (int i = 1; i < numVertices+1; i++) {
                 vertexList[i] = new Vertex(i);
             }
 
             // Start processing the file.
-            vertexDetails = bufferedReader.readLine().trim();       
+            vertexDetails = bufferedReader.readLine();       
 
             // While the line is not empty
             while (vertexDetails != null && !coordinateFlag) {
@@ -93,22 +92,19 @@ public class GraphPanel extends Panel
                     coordinateFlag = true;
                 } else {
                     vertexVertices = vertexDetails.split(" ");
-                    currentVertex = Integer.parseInt(vertexVertices[0]);
+                    currentVertex = Integer.parseInt(vertexVertices[0]) * (-1);
 
-                    if (currentVertex < 0 ) {
-                        currentVertex = currentVertex * (-1);
-
-                        for (int j = 1; j < vertexVertices.length; j++) {
-                            vertexToAdd = Integer.parseInt(vertexVertices[j].trim());
-                            (vertexList[currentVertex]).addVertex(vertexToAdd);
-                            numEdges++;
-                        }
+                    for (int j = 1; j < vertexVertices.length; j++) {
+                        vertexToAdd = Integer.parseInt(vertexVertices[j]);
+                        (vertexList[currentVertex]).addVertex(vertexToAdd);
+                        numEdges++;
                     }
                 }
 
                 vertexDetails = bufferedReader.readLine();                
             }
 
+            // Give coordinates to vertices
             while (vertexDetails != null) {
                 vertexVertices = vertexDetails.split(" ");                
 
@@ -121,6 +117,7 @@ public class GraphPanel extends Panel
             }
 
             window.updateDetails(graphName, numVertices, numEdges);
+
         } catch (FileNotFoundException ex) {
             System.out.println("File " + fileName + " not found.\n");
         } catch (IOException ex) {

@@ -1,6 +1,8 @@
 /**
  * B. Postnikoff
  * Window
+ * Holds the main.
+ * Creates the display window
  * 2016-04-08
  */
 
@@ -10,13 +12,13 @@ import java.util.*;
 
 public class Window extends JFrame
 {
-    DrawPolygon graph;
-    GraphPanel graphPanel;
-    LinePanel linePanel;
-    AestheticsPanel aestheticsPanel;
-    DetailsPanel detailsPanel;
-    JPanel optionPanel;
-    JPanel graphingPanel;
+    private DrawPolygon graph;
+    private GraphPanel graphPanel;
+    private LinePanel linePanel;
+    private AestheticsPanel aestheticsPanel;
+    private DetailsPanel detailsPanel;
+    private JPanel optionPanel;
+    private JPanel graphingPanel;
 
     public static void main(String[] args)
     {
