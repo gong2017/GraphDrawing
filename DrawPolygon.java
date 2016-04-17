@@ -30,12 +30,13 @@ public class DrawPolygon extends JPanel {
     public void paintComponent(Graphics g) 
     {
         super.paintComponent(g);
+        g.translate(getWidth()/2, getHeight()/2);
         ((Graphics2D) g).setPaint(Color.BLACK); 
 
         // Only displays a graph if the list of vertices is not empty.
         if (vertexList != null)
         {
-            giveVerticesCoordinates();
+            giveVerticesCoordinates(getWidth(), getHeight());
 
             // Draws the edges between the vertices on the screen
             for (int k = 1; k < vertexList.length; k++) {
@@ -69,21 +70,24 @@ public class DrawPolygon extends JPanel {
     }
 
     // Give initial coordinates to the vertices
-    public void giveVerticesCoordinates()
+    public void giveVerticesCoordinates(int width, int height)
     {
-        x = 50;
-        y = 50;
-        
-        for ( int i = 1; i < vertexList.length; i++) {
-            if (x >= getWidth()-50)
-            {
-                x = 50;
-                y += 50;
-            }
+        x = (width/2) * (-1) + 50;
+        y = (height/2) * (-1) + 50;        
 
-            vertexList[i].setX(x);
-            vertexList[i].setY(y);
-            x += 50;
+        for ( int i = 1; i < vertexList.length; i++) {
+            if(!vertexList[i].hasCoordinates()) {
+
+                if (x >= getWidth()/2-50)
+                {
+                    x = (width/2) * (-1) + 50;
+                    y += 50;
+                }                
+
+                vertexList[i].setX(x);
+                vertexList[i].setY(y);
+                x += 50;
+            }
         }
     }
 
