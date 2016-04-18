@@ -73,8 +73,7 @@ public class Vertex
     public Vector calculateEdgeForce() {
         Vector totalEdgeForce = new Vector();
         Vector singleEdgeForce;
-        
-        
+
         for (int i = 0; i < edges.size(); i++) {
             singleEdgeForce = edges.get(i).getForce(this);
             totalEdgeForce = totalEdgeForce.add(singleEdgeForce);
@@ -89,7 +88,7 @@ public class Vertex
     public void calculateDisplacement() {
         displacement = displacement.add(acceleration);
         position = position.add(displacement);
-        displacement = displacement.multiply(0.99);        
+        displacement = displacement.multiply(0.99);
     }
 
     // Draw the vertex

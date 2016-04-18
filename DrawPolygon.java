@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.Font;
+import java.awt.event.*;
 
 public class DrawPolygon extends JPanel {
     private Vertex[] vertexList;
@@ -38,15 +39,7 @@ public class DrawPolygon extends JPanel {
             // Gives coordinates to the vertices without coordinates
             giveVerticesCoordinates(getWidth(), getHeight());
 
-            for (int m = 0; m < 500; m++) {
-                for (int k = 1; k < vertexList.length; k++) {
-                    vertexList[k].resetAcceleration();
-                    vertexList[k].calculateForce(vertexList);
-                    vertexList[k].calculateEdgeForce();
-                    vertexList[k].calculateDisplacement();
-                }
-            }
-            
+            // Print out edges
             for (int j = 0; j < edges.size(); j++) {
                 if (lineType == 0) {
                     edges.get(j).drawStraight(g);
@@ -55,29 +48,39 @@ public class DrawPolygon extends JPanel {
                 }
             }
 
+            // Print out vertices
             for (int i = 1; i < vertexList.length; i++) {
                 vertexList[i].Draw(g);
             }
         }
     }
 
+    // Runs the Eades algorithm
+    public void eades() {        
+        for (int k = 1; k < vertexList.length; k++) {
+            vertexList[k].resetAcceleration();
+            vertexList[k].calculateForce(vertexList);
+            vertexList[k].calculateEdgeForce();
+            vertexList[k].calculateDisplacement();
+        }
+    }
+
     // Give initial coordinates to the vertices
     public void giveVerticesCoordinates(int width, int height)
     {
-        int x = (width/2) * (-1) + 50;
-        int y = ((height/2) * (-1)) + 50;
-
+        Random random = new Random();
+        int max = 500/2;
+        int min = -500/2;
+        int x;
+        int y;        
+        
         for ( int i = 1; i < vertexList.length; i++) {
             if(!vertexList[i].hasCoordinates()) {
-                if (x >= getWidth()/2-50)
-                {
-                    x = (width/2) * (-1) + 50;
-                    y += 50;
-                }
-
+                x = random.nextInt(max - min + 1) + min;
+                y = random.nextInt(max - min + 1) + min;
+                
                 vertexList[i].setX(x);
                 vertexList[i].setY(y);
-                x += 50;
                 vertexList[i].hasCoordinates();
             }
         }
@@ -103,5 +106,12 @@ public class DrawPolygon extends JPanel {
     public void updateAesthetic(int aesthetic)
     {
         currentAesthetic = aesthetic;
+
+        if (aesthetic == 0) {
+            for (int m = 0; m < 100; m++) {
+                eades();
+                repaint();
+            }
+        }
     }
 }

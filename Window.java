@@ -69,6 +69,7 @@ public class Window extends JFrame
         this.setVisible(true);
     }
     
+    // Updates the edges in the graph
     public void updateGraphEdges(ArrayList<Edge> edges) {
         graph.updateEdges(edges);
     }

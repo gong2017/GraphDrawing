@@ -2,7 +2,7 @@
 comment0.params=window
 comment0.target=AestheticsPanel(Window)
 comment1.params=button
-comment1.target=void\ setButtonDetails(javax.swing.JRadioButton)
+comment1.target=void\ setButtonDetails(javax.swing.JButton)
 comment2.params=e
 comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
 numComments=3

@@ -50,7 +50,7 @@ public class LinePanel extends Panel
         }
         else
         {
-            straightLine.setSelected(false);               
+            straightLine.setSelected(false);
             orthogonalLine.setSelected(true);
             window.updateLineType(1);
         }

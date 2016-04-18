@@ -1,3 +1,9 @@
+/**
+ * B. Postnikoff
+ * Edge
+ * 2016-04-18
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -7,6 +13,7 @@ public class Edge
     private Vertex secondEdgeVertex;
     private double length;
 
+    // Edge object constructor
     public Edge() {
         length = 25;
     }
@@ -24,7 +31,7 @@ public class Edge
     // Draws the edge on the screen
     public void drawStraight(Graphics g) {
         g.setColor(Color.black);
-        g.drawLine((int)(firstEdgeVertex.getPosition().getX()), 
+        g.drawLine((int)(firstEdgeVertex.getPosition().getX()),
             (int)(firstEdgeVertex.getPosition().getY()),
             (int)(secondEdgeVertex.getPosition().getX()),
             (int)(secondEdgeVertex.getPosition().getY()));
@@ -51,14 +58,12 @@ public class Edge
 
         if(firstEdgeVertex == springVertex) {
             force = secondEdgeVertex.getPosition().subtract(firstEdgeVertex.getPosition());
-        }
-        else
-        {
+        } else {
             force = firstEdgeVertex.getPosition().subtract(secondEdgeVertex.getPosition());
         }
 
         temperature = force.getLength() - 10 * length;
-        cooling = Math.signum(temperature) * Math.log( Math.abs(temperature)) * 0.01;
+        cooling = Math.signum(temperature) * Math.log(Math.abs(temperature)) * 0.01;
         force = force.getUnitVector().multiply(cooling);
 
         return force;

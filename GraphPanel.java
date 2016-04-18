@@ -42,7 +42,7 @@ public class GraphPanel extends Panel
         updateGraph();
     }
 
-    // Updates the vertex list to represent the current graph. 
+    // Updates the vertex list to represent the current graph.
     public void updateGraph()
     {
         String fileName = graphList.getSelectedItem().toString();
@@ -103,12 +103,12 @@ public class GraphPanel extends Panel
                         vertexToAdd = Integer.parseInt(vertexVertices[j]);
                         (vertexList[currentVertex]).addVertex(vertexToAdd);
 
+                        // Make edges, add edges to vertices
                         edge = new Edge();
                         edge.setFirstEdgeVertex(vertexList[currentVertex]);
                         edge.setSecondEdgeVertex(vertexList[vertexToAdd]);
                         vertexList[currentVertex].addEdge(edge);
                         vertexList[vertexToAdd].addEdge(edge);
-
                         edges.add(edge);
                         numEdges++;
                     }
