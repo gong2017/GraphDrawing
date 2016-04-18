@@ -9,4 +9,6 @@ comment3.params=g
 comment3.target=void\ drawStraight(java.awt.Graphics)
 comment4.params=g
 comment4.target=void\ drawOrthogonal(java.awt.Graphics)
-numComments=5
+comment5.params=springVertex
+comment5.target=Vector\ getForce(Vertex)
+numComments=6

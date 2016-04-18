@@ -38,11 +38,20 @@ public class DrawPolygon extends JPanel {
             // Gives coordinates to the vertices without coordinates
             giveVerticesCoordinates(getWidth(), getHeight());
 
+            for (int m = 0; m < 500; m++) {
+                for (int k = 1; k < vertexList.length; k++) {
+                    vertexList[k].resetAcceleration();
+                    vertexList[k].calculateForce(vertexList);
+                    vertexList[k].calculateEdgeForce();
+                    vertexList[k].calculateDisplacement();
+                }
+            }
+            
             for (int j = 0; j < edges.size(); j++) {
                 if (lineType == 0) {
                     edges.get(j).drawStraight(g);
                 } else {
-                     edges.get(j).drawOrthogonal(g);
+                    edges.get(j).drawOrthogonal(g);
                 }
             }
 
@@ -78,7 +87,7 @@ public class DrawPolygon extends JPanel {
     public void updateEdges(ArrayList<Edge> edges) {
         this.edges = edges;
     }
-    
+
     // Updates the list of vertices we are currently processing
     public void updateVertices(Vertex[] vertexList) {
         this.vertexList = vertexList;

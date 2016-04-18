@@ -9,7 +9,6 @@ import java.util.*;
 import java.awt.*;
 import java.awt.Font;
 
-
 public class Vertex
 {
     private ArrayList<Integer> adjacentVertices;
@@ -33,10 +32,64 @@ public class Vertex
         adjacentVertices = new ArrayList<Integer>();
         edges = new ArrayList<Edge>();
     }
-    
+
     // Get the vertex's position vector
     public Vector getPosition() {
         return position;
+    }
+
+    // Resets acceleration
+    public void resetAcceleration() {
+        this.acceleration = new Vector();
+    }
+    
+    // Calculates force
+    // Limits the maximum displacement
+    // Prevents the vertex from being placed outside the screen
+    public Vector calculateForce(Vertex[] vertexList) {
+        Vector result = new Vector();
+        Vector temp;
+        double temp2;
+        
+        for(int i = 1; i < vertexList.length; i++){
+            if(vertexList[i]== this){
+                continue;
+            }
+
+            temp = this.position.subtract(vertexList[i].getPosition());
+            temp2 = 10 / Math.pow(temp.getLength(), 2);
+
+            temp = temp.getUnitVector().multiply(temp2);
+            result = result.add(temp);
+
+        }
+        
+        acceleration = acceleration.add(result);
+        
+        return result;
+    }
+    
+    // Calculates edge force, reacts to the edge
+    public Vector calculateEdgeForce() {
+        Vector totalEdgeForce = new Vector();
+        Vector singleEdgeForce;
+        
+        
+        for (int i = 0; i < edges.size(); i++) {
+            singleEdgeForce = edges.get(i).getForce(this);
+            totalEdgeForce = totalEdgeForce.add(singleEdgeForce);
+        }
+        
+        acceleration = acceleration.add(totalEdgeForce);
+        
+        return totalEdgeForce;
+    }
+    
+    // Calculates displacement
+    public void calculateDisplacement() {
+        displacement = displacement.add(acceleration);
+        position = position.add(displacement);
+        displacement = displacement.multiply(0.99);        
     }
 
     // Draw the vertex
@@ -87,6 +140,10 @@ public class Vertex
     public void addVertex(int newVertex)
     {
         adjacentVertices.add(newVertex);
+    }
+
+    public void addEdge(Edge edge) {
+        edges.add(edge);
     }
 
     // Updates the flag saying a vertex has coordinates to true

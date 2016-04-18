@@ -106,6 +106,8 @@ public class GraphPanel extends Panel
                         edge = new Edge();
                         edge.setFirstEdgeVertex(vertexList[currentVertex]);
                         edge.setSecondEdgeVertex(vertexList[vertexToAdd]);
+                        vertexList[currentVertex].addEdge(edge);
+                        vertexList[vertexToAdd].addEdge(edge);
 
                         edges.add(edge);
                         numEdges++;

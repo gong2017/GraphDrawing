@@ -8,7 +8,7 @@ public class Edge
     private double length;
 
     public Edge() {
-        length = 0;
+        length = 25;
     }
 
     // Sets the first vertex of the edge
@@ -42,31 +42,25 @@ public class Edge
             (int)secondEdgeVertex.getY());
     }
 
-    // Sets the edge length
-    //public void setLength() {
-    //    length = firstEdgeVertex.getPosition().subtract(secondEdgeVertex.getPosition()).getLength();
-    //}
-    // 
-    //     // Gets the "spring" of the edge
-    //     public Vector getForce(Vertex springVertex)
-    //     {
-    //         Vector force;
-    //         double temperature;
-    //         double cooling;
-    // 
-    //         if(firstEdgeVertex == springVertex) {
-    //             force = secondEdgeVertex.getPosition().subtract(firstEdgeVertex.getPosition());
-    //         }
-    //         else
-    //         {
-    //             force = firstEdgeVertex.getPosition().subtract(secondEdgeVertex.getPosition());
-    //         }
-    // 
-    //         temperature = force.getLength() - 10 * length;
-    //         cooling = Math.signum(temperature) * Math.log( Math.abs(temperature)) * 0.01;
-    //         force = force.getUnitVector().multiply(cooling);
-    //         
-    //     //    return force;
-    //     //}
+    // Gets the "spring" of the edge
+    public Vector getForce(Vertex springVertex)
+    {
+        Vector force;
+        double temperature;
+        double cooling;
 
+        if(firstEdgeVertex == springVertex) {
+            force = secondEdgeVertex.getPosition().subtract(firstEdgeVertex.getPosition());
+        }
+        else
+        {
+            force = firstEdgeVertex.getPosition().subtract(secondEdgeVertex.getPosition());
+        }
+
+        temperature = force.getLength() - 10 * length;
+        cooling = Math.signum(temperature) * Math.log( Math.abs(temperature)) * 0.01;
+        force = force.getUnitVector().multiply(cooling);
+
+        return force;
+    }
 }
