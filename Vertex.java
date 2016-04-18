@@ -4,7 +4,11 @@
  * 2016-03-29
  */
 
+import javax.swing.*;
 import java.util.*;
+import java.awt.*;
+import java.awt.Font;
+
 
 public class Vertex
 {
@@ -13,12 +17,21 @@ public class Vertex
     private int x;
     private int y;
     private boolean hasCoordinates;
+    private Font f = new Font("Monospaced", Font.BOLD, 14);    
 
     // Constructor for vertex objects
     public Vertex(int name)
     {
         this.name = name;
         adjacentVertices = new ArrayList<Integer>();
+    }
+
+    public void Draw(Graphics g) {
+        ((Graphics2D)g).setPaint(new Color(255, 102, 102));
+        g.fillOval(x-(30/2), y-(30/2), 30, 30);
+        ((Graphics2D)g).setPaint(Color.BLACK);
+        g.setFont(f);
+        g.drawString(name+"", x-5, y+5);
     }
 
     // Gets the x coordinate of the vertex
@@ -61,12 +74,12 @@ public class Vertex
     {
         adjacentVertices.add(newVertex);
     }
-    
+
     // Updates the flag saying a vertex has coordinates to true
     public void setHasCoordinates() {
         hasCoordinates = true;
     }
-    
+
     // Returns true if the vertex already has coordinates
     public boolean hasCoordinates() {
         return hasCoordinates;
