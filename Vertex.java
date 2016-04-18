@@ -13,25 +13,35 @@ import java.awt.Font;
 public class Vertex
 {
     private ArrayList<Integer> adjacentVertices;
+    private ArrayList<Edge> edges;
     private int name;
     private boolean hasCoordinates;
     private Vector position;
+    private Vector displacement;
+    private Vector acceleration;
     private Font f = new Font("Monospaced", Font.BOLD, 14);    
+    private Color color = new Color(255, 102, 102);
 
     // Constructor for vertex objects
     public Vertex(int name)
     {
         this.name = name;
+        displacement = new Vector(0,0);
+        acceleration = new Vector(0,0);
+        position = new Vector(0,0);
+        
         adjacentVertices = new ArrayList<Integer>();
-        position = new Vector();
+        edges = new ArrayList<Edge>();        
     }
     
+    // Get the vertex's position vector
     public Vector getPosition() {
         return position;
     }
 
+    // Draw the vertex
     public void Draw(Graphics g) {
-        ((Graphics2D)g).setPaint(new Color(255, 102, 102));
+        ((Graphics2D)g).setPaint(color);
         g.fillOval((int)position.getX()-(30/2), (int)position.getY() -(30/2), 30, 30);
         ((Graphics2D)g).setPaint(Color.BLACK);
         g.setFont(f);

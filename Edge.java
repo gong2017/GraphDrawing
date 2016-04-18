@@ -7,9 +7,22 @@ public class Edge
     private Vertex secondEdgeVertex;
     private double length;
 
+    public Edge() {
+        length = 0;
+    }
+
+    // Sets the first vertex of the edge
+    public void setFirstEdgeVertex(Vertex firstEdgeVertex) {
+        this.firstEdgeVertex = firstEdgeVertex;
+    }
+
+    // Sets the second vertex of the edge
+    public void setSecondEdgeVertex(Vertex secondEdgeVertex) {
+        this.secondEdgeVertex = secondEdgeVertex;
+    }    
+
     // Draws the edge on the screen
-    public void Draw(Graphics g)
-    {      
+    public void drawStraight(Graphics g) {    
         g.setColor(Color.black);
         g.drawLine((int)(firstEdgeVertex.getPosition().getX()), 
             (int)(firstEdgeVertex.getPosition().getY()),
@@ -17,10 +30,22 @@ public class Edge
             (int)(secondEdgeVertex.getPosition().getY()));
     }
 
+    // Draw the orthogonal lines
+    public void drawOrthogonal(Graphics g) {
+        g.drawLine((int)firstEdgeVertex.getX(), 
+            (int)firstEdgeVertex.getY(), 
+            (int)secondEdgeVertex.getX(), 
+            (int)firstEdgeVertex.getY());
+        g.drawLine((int)secondEdgeVertex.getX(), 
+            (int)firstEdgeVertex.getY(), 
+            (int)secondEdgeVertex.getX(), 
+            (int)secondEdgeVertex.getY());        
+    }
+
     // Sets the edge length
     //public void setLength() {
     //    length = firstEdgeVertex.getPosition().subtract(secondEdgeVertex.getPosition()).getLength();
-    //     //}
+    //}
     // 
     //     // Gets the "spring" of the edge
     //     public Vector getForce(Vertex springVertex)
@@ -44,13 +69,4 @@ public class Edge
     //     //    return force;
     //     //}
 
-    // Sets the first vertex of the edge
-    public void setFirstEdgeVertex(Vertex firstEdgeVertex) {
-        this.firstEdgeVertex = firstEdgeVertex;
-    }
-
-    // Sets the second vertex of the edge
-    public void setSecondEdgeVertex(Vertex secondEdgeVertex) {
-        this.secondEdgeVertex = secondEdgeVertex;
-    }
 }

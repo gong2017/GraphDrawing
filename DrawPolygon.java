@@ -38,38 +38,17 @@ public class DrawPolygon extends JPanel {
             // Gives coordinates to the vertices without coordinates
             giveVerticesCoordinates(getWidth(), getHeight());
 
-            // Draws the edges between the vertices on the screen
-            for (int k = 1; k < vertexList.length; k++) {                
-                // Grab the vertex we would like to add edges from.
-                currentVertices = vertexList[k].getAdjacentVertices();
-
-                for (int j = 0; j < currentVertices.size(); j++) {
-                    currentVertex = vertexList[(int)currentVertices.get(j)];
-                    ((Graphics2D)g).setStroke(new BasicStroke(3));
-
-                    if (lineType == 0) {
-                        g.drawLine((int)vertexList[k].getX(), 
-                        (int)vertexList[k].getY(), 
-                        (int)currentVertex.getX(), 
-                        (int)currentVertex.getY());
-                    }
-                    else
-                    {
-                        g.drawLine((int)vertexList[k].getX(), 
-                        (int)vertexList[k].getY(), 
-                        (int)currentVertex.getX(), 
-                        (int)vertexList[k].getY());
-                        g.drawLine((int)currentVertex.getX(), 
-                        (int)vertexList[k].getY(), 
-                        (int)currentVertex.getX(), 
-                        (int)currentVertex.getY());
-                    }
+            for (int j = 0; j < edges.size(); j++) {
+                if (lineType == 0) {
+                    edges.get(j).drawStraight(g);
+                } else {
+                     edges.get(j).drawOrthogonal(g);                   
                 }
-            }
-
+            }            
+            
             for (int i = 1; i < vertexList.length; i++) {
                 vertexList[i].Draw(g);
-            }
+            }           
         }
     }
 
@@ -95,6 +74,11 @@ public class DrawPolygon extends JPanel {
         }
     }
 
+    // Update the edges of the graph
+    public void updateEdges(ArrayList<Edge> edges) {
+        this.edges = edges;
+    }
+    
     // Updates the list of vertices we are currently processing
     public void updateVertices(Vertex[] vertexList) {
         this.vertexList = vertexList;

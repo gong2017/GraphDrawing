@@ -68,6 +68,10 @@ public class Window extends JFrame
         this.getContentPane().add(optionPanel, BorderLayout.EAST);
         this.setVisible(true);
     }
+    
+    public void updateGraphEdges(ArrayList<Edge> edges) {
+        graph.updateEdges(edges);
+    }
 
     // Updates the graph in the window
     public void updateGraphVertices(Vertex[] vertexList) {

@@ -50,6 +50,7 @@ public class GraphPanel extends Panel
         vertexList = readFile(fileName);
 
         window.updateGraphVertices(vertexList);
+        window.updateGraphEdges(edges);
         window.repaint();
     }
 
@@ -61,6 +62,7 @@ public class GraphPanel extends Panel
         String vertexDetails;
 
         vertexList = null;
+        edges = null;
         String[] vertexVertices;
         int vertexToAdd;
         Edge edge;
@@ -79,6 +81,7 @@ public class GraphPanel extends Panel
             graphName = bufferedReader.readLine();
             numVertices = Integer.parseInt(bufferedReader.readLine());
             vertexList = new Vertex[numVertices+1];
+            edges = new ArrayList<Edge>();
 
             // Initializes each vertex in the graph.
             for (int i = 1; i < numVertices+1; i++) {
