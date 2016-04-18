@@ -11,6 +11,7 @@ import java.awt.Font;
 
 public class DrawPolygon extends JPanel {
     private Vertex[] vertexList;
+    private ArrayList<Edge> edges;
     private ArrayList<Integer> currentVertices;
     private Vertex currentVertex;
     private int lineType = 0; // Straight line
@@ -47,12 +48,21 @@ public class DrawPolygon extends JPanel {
                     ((Graphics2D)g).setStroke(new BasicStroke(3));
 
                     if (lineType == 0) {
-                        g.drawLine(vertexList[k].getX(), vertexList[k].getY(), currentVertex.getX(), currentVertex.getY());
+                        g.drawLine((int)vertexList[k].getX(), 
+                        (int)vertexList[k].getY(), 
+                        (int)currentVertex.getX(), 
+                        (int)currentVertex.getY());
                     }
                     else
                     {
-                        g.drawLine(vertexList[k].getX(), vertexList[k].getY(), currentVertex.getX(), vertexList[k].getY());
-                        g.drawLine(currentVertex.getX(), vertexList[k].getY(), currentVertex.getX(), currentVertex.getY());
+                        g.drawLine((int)vertexList[k].getX(), 
+                        (int)vertexList[k].getY(), 
+                        (int)currentVertex.getX(), 
+                        (int)vertexList[k].getY());
+                        g.drawLine((int)currentVertex.getX(), 
+                        (int)vertexList[k].getY(), 
+                        (int)currentVertex.getX(), 
+                        (int)currentVertex.getY());
                     }
                 }
             }
@@ -80,6 +90,7 @@ public class DrawPolygon extends JPanel {
                 vertexList[i].setX(x);
                 vertexList[i].setY(y);
                 x += 50;
+                vertexList[i].hasCoordinates();
             }
         }
     }

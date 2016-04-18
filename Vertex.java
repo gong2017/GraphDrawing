@@ -14,9 +14,8 @@ public class Vertex
 {
     private ArrayList<Integer> adjacentVertices;
     private int name;
-    private int x;
-    private int y;
     private boolean hasCoordinates;
+    private Vector position;
     private Font f = new Font("Monospaced", Font.BOLD, 14);    
 
     // Constructor for vertex objects
@@ -24,37 +23,42 @@ public class Vertex
     {
         this.name = name;
         adjacentVertices = new ArrayList<Integer>();
+        position = new Vector();
+    }
+    
+    public Vector getPosition() {
+        return position;
     }
 
     public void Draw(Graphics g) {
         ((Graphics2D)g).setPaint(new Color(255, 102, 102));
-        g.fillOval(x-(30/2), y-(30/2), 30, 30);
+        g.fillOval((int)position.getX()-(30/2), (int)position.getY() -(30/2), 30, 30);
         ((Graphics2D)g).setPaint(Color.BLACK);
         g.setFont(f);
-        g.drawString(name+"", x-5, y+5);
+        g.drawString(name+"", (int)position.getX()-5, (int)position.getY()+5);
     }
 
     // Gets the x coordinate of the vertex
-    public int getX() {
-        return x+5;
+    public double getX() {
+        return this.position.getX();
     }
 
     // Sets the x coordinate of the vertex
-    public void setX(int x)
+    public void setX(double x)
     {
-        this.x = x;
+        this.position.setX(x);
     }
 
     // Gets the y coordinate of the vertex
-    public int getY()
+    public double getY()
     {
-        return y+5;
+        return this.position.getY();
     }
 
     // Sets the y coordinate of the vertex
-    public void setY(int y)
+    public void setY(double y)
     {
-        this.y = y;
+        this.position.setY(y);
     }
 
     // Returns the name of the vertex.

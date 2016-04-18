@@ -17,6 +17,7 @@ public class GraphPanel extends Panel
     private String[] graphStringList = {"TestFile", "StarFile"}; 
     private JComboBox graphList;
     private Vertex[] vertexList;
+    private ArrayList<Edge> edges = new ArrayList<Edge>();
 
     // Button Panel constructor
     public GraphPanel(Window window)
@@ -59,16 +60,17 @@ public class GraphPanel extends Panel
         FileReader fileReader = null;
         String vertexDetails;
 
-        Vertex[] vertexList = null;
+        vertexList = null;
         String[] vertexVertices;
         int vertexToAdd;
+        Edge edge;
         int currentVertex;
         int lastUpdated = 1;
         boolean coordinateFlag = false;        
 
         String graphName;
-        int numVertices = 0;
-        int numEdges = 0;       
+        int numVertices = 0; 
+        int numEdges = 0;
 
         try {
             fileReader = new FileReader(fileName);
@@ -97,6 +99,12 @@ public class GraphPanel extends Panel
                     for (int j = 1; j < vertexVertices.length; j++) {
                         vertexToAdd = Integer.parseInt(vertexVertices[j]);
                         (vertexList[currentVertex]).addVertex(vertexToAdd);
+                        
+                        edge = new Edge();
+                        edge.setFirstEdgeVertex(vertexList[currentVertex]);
+                        edge.setSecondEdgeVertex(vertexList[vertexToAdd]);
+                        
+                        edges.add(edge);
                         numEdges++;
                     }
                 }
@@ -108,8 +116,8 @@ public class GraphPanel extends Panel
             while (vertexDetails != null) {
                 vertexVertices = vertexDetails.split(" ");                
 
-                vertexList[lastUpdated].setX(Integer.parseInt(vertexVertices[0]));
-                vertexList[lastUpdated].setY(Integer.parseInt(vertexVertices[1])*(-1));
+                vertexList[lastUpdated].setX(Double.parseDouble(vertexVertices[0]));
+                vertexList[lastUpdated].setY(Double.parseDouble(vertexVertices[1])*(-1));
                 vertexList[lastUpdated].setHasCoordinates();
                 lastUpdated++;
 
