@@ -19,10 +19,10 @@ public class Edge
     // Sets the second vertex of the edge
     public void setSecondEdgeVertex(Vertex secondEdgeVertex) {
         this.secondEdgeVertex = secondEdgeVertex;
-    }    
+    }
 
     // Draws the edge on the screen
-    public void drawStraight(Graphics g) {    
+    public void drawStraight(Graphics g) {
         g.setColor(Color.black);
         g.drawLine((int)(firstEdgeVertex.getPosition().getX()), 
             (int)(firstEdgeVertex.getPosition().getY()),
@@ -32,14 +32,14 @@ public class Edge
 
     // Draw the orthogonal lines
     public void drawOrthogonal(Graphics g) {
-        g.drawLine((int)firstEdgeVertex.getX(), 
-            (int)firstEdgeVertex.getY(), 
-            (int)secondEdgeVertex.getX(), 
+        g.drawLine((int)firstEdgeVertex.getX(),
+            (int)firstEdgeVertex.getY(),
+            (int)secondEdgeVertex.getX(),
             (int)firstEdgeVertex.getY());
-        g.drawLine((int)secondEdgeVertex.getX(), 
-            (int)firstEdgeVertex.getY(), 
-            (int)secondEdgeVertex.getX(), 
-            (int)secondEdgeVertex.getY());        
+        g.drawLine((int)secondEdgeVertex.getX(),
+            (int)firstEdgeVertex.getY(),
+            (int)secondEdgeVertex.getX(),
+            (int)secondEdgeVertex.getY());
     }
 
     // Sets the edge length

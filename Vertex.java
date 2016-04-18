@@ -19,7 +19,7 @@ public class Vertex
     private Vector position;
     private Vector displacement;
     private Vector acceleration;
-    private Font f = new Font("Monospaced", Font.BOLD, 14);    
+    private Font f = new Font("Monospaced", Font.BOLD, 14);
     private Color color = new Color(255, 102, 102);
 
     // Constructor for vertex objects
@@ -29,9 +29,9 @@ public class Vertex
         displacement = new Vector(0,0);
         acceleration = new Vector(0,0);
         position = new Vector(0,0);
-        
+
         adjacentVertices = new ArrayList<Integer>();
-        edges = new ArrayList<Edge>();        
+        edges = new ArrayList<Edge>();
     }
     
     // Get the vertex's position vector

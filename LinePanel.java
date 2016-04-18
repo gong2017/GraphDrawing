@@ -13,7 +13,7 @@ public class LinePanel extends Panel
 {
     private JLabel lineLabel = new JLabel("Choose line shape: ");
     private JRadioButton straightLine = new JRadioButton("Straight");
-    private JRadioButton orthogonalLine = new JRadioButton("Orthogonal");    
+    private JRadioButton orthogonalLine = new JRadioButton("Orthogonal");
 
     // Line panel constructor
     public LinePanel(Window window)

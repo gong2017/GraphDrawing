@@ -68,7 +68,7 @@ public class GraphPanel extends Panel
         Edge edge;
         int currentVertex;
         int lastUpdated = 1;
-        boolean coordinateFlag = false;        
+        boolean coordinateFlag = false;
 
         String graphName;
         int numVertices = 0; 
@@ -89,7 +89,7 @@ public class GraphPanel extends Panel
             }
 
             // Start processing the file.
-            vertexDetails = bufferedReader.readLine();       
+            vertexDetails = bufferedReader.readLine();
 
             // While the line is not empty
             while (vertexDetails != null && !coordinateFlag) {
@@ -102,22 +102,22 @@ public class GraphPanel extends Panel
                     for (int j = 1; j < vertexVertices.length; j++) {
                         vertexToAdd = Integer.parseInt(vertexVertices[j]);
                         (vertexList[currentVertex]).addVertex(vertexToAdd);
-                        
+
                         edge = new Edge();
                         edge.setFirstEdgeVertex(vertexList[currentVertex]);
                         edge.setSecondEdgeVertex(vertexList[vertexToAdd]);
-                        
+
                         edges.add(edge);
                         numEdges++;
                     }
                 }
 
-                vertexDetails = bufferedReader.readLine();                
+                vertexDetails = bufferedReader.readLine();
             }
 
             // Give coordinates to vertices
             while (vertexDetails != null) {
-                vertexVertices = vertexDetails.split(" ");                
+                vertexVertices = vertexDetails.split(" ");
 
                 vertexList[lastUpdated].setX(Double.parseDouble(vertexVertices[0]));
                 vertexList[lastUpdated].setY(Double.parseDouble(vertexVertices[1])*(-1));

@@ -26,7 +26,7 @@ public class DrawPolygon extends JPanel {
 
     // Paints the graph on the screen
     @Override
-    public void paintComponent(Graphics g) 
+    public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         g.translate(getWidth()/2, getHeight()/2);
@@ -42,13 +42,13 @@ public class DrawPolygon extends JPanel {
                 if (lineType == 0) {
                     edges.get(j).drawStraight(g);
                 } else {
-                     edges.get(j).drawOrthogonal(g);                   
+                     edges.get(j).drawOrthogonal(g);
                 }
-            }            
-            
+            }
+
             for (int i = 1; i < vertexList.length; i++) {
                 vertexList[i].Draw(g);
-            }           
+            }
         }
     }
 
@@ -56,15 +56,15 @@ public class DrawPolygon extends JPanel {
     public void giveVerticesCoordinates(int width, int height)
     {
         int x = (width/2) * (-1) + 50;
-        int y = ((height/2) * (-1)) + 50;        
+        int y = ((height/2) * (-1)) + 50;
 
-        for ( int i = 1; i < vertexList.length; i++) {            
+        for ( int i = 1; i < vertexList.length; i++) {
             if(!vertexList[i].hasCoordinates()) {
                 if (x >= getWidth()/2-50)
                 {
                     x = (width/2) * (-1) + 50;
                     y += 50;
-                }                
+                }
 
                 vertexList[i].setX(x);
                 vertexList[i].setY(y);
