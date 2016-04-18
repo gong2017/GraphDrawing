@@ -17,6 +17,7 @@ public class GraphPanel extends Panel
     private String[] graphStringList = {"TestFile", "StarFile"}; 
     private JComboBox graphList;
     private Vertex[] vertexList;
+    private ArrayList<Edge> edges = new ArrayList<Edge>();
 
     // Button Panel constructor
     public GraphPanel(Window window)
@@ -41,7 +42,7 @@ public class GraphPanel extends Panel
         updateGraph();
     }
 
-    // Updates the vertex list to represent the current graph. 
+    // Updates the vertex list to represent the current graph.
     public void updateGraph()
     {
         String fileName = graphList.getSelectedItem().toString();
@@ -49,6 +50,7 @@ public class GraphPanel extends Panel
         vertexList = readFile(fileName);
 
         window.updateGraphVertices(vertexList);
+        window.updateGraphEdges(edges);
         window.repaint();
     }
 
@@ -59,16 +61,18 @@ public class GraphPanel extends Panel
         FileReader fileReader = null;
         String vertexDetails;
 
-        Vertex[] vertexList = null;
+        vertexList = null;
+        edges = null;
         String[] vertexVertices;
         int vertexToAdd;
+        Edge edge;
         int currentVertex;
         int lastUpdated = 1;
-        boolean coordinateFlag = false;        
+        boolean coordinateFlag = false;
 
         String graphName;
-        int numVertices = 0;
-        int numEdges = 0;       
+        int numVertices = 0; 
+        int numEdges = 0;
 
         try {
             fileReader = new FileReader(fileName);
@@ -77,6 +81,7 @@ public class GraphPanel extends Panel
             graphName = bufferedReader.readLine();
             numVertices = Integer.parseInt(bufferedReader.readLine());
             vertexList = new Vertex[numVertices+1];
+            edges = new ArrayList<Edge>();
 
             // Initializes each vertex in the graph.
             for (int i = 1; i < numVertices+1; i++) {
@@ -84,7 +89,7 @@ public class GraphPanel extends Panel
             }
 
             // Start processing the file.
-            vertexDetails = bufferedReader.readLine();       
+            vertexDetails = bufferedReader.readLine();
 
             // While the line is not empty
             while (vertexDetails != null && !coordinateFlag) {
@@ -97,19 +102,27 @@ public class GraphPanel extends Panel
                     for (int j = 1; j < vertexVertices.length; j++) {
                         vertexToAdd = Integer.parseInt(vertexVertices[j]);
                         (vertexList[currentVertex]).addVertex(vertexToAdd);
+
+                        // Make edges, add edges to vertices
+                        edge = new Edge();
+                        edge.setFirstEdgeVertex(vertexList[currentVertex]);
+                        edge.setSecondEdgeVertex(vertexList[vertexToAdd]);
+                        vertexList[currentVertex].addEdge(edge);
+                        vertexList[vertexToAdd].addEdge(edge);
+                        edges.add(edge);
                         numEdges++;
                     }
                 }
 
-                vertexDetails = bufferedReader.readLine();                
+                vertexDetails = bufferedReader.readLine();
             }
 
             // Give coordinates to vertices
             while (vertexDetails != null) {
-                vertexVertices = vertexDetails.split(" ");                
+                vertexVertices = vertexDetails.split(" ");
 
-                vertexList[lastUpdated].setX(Integer.parseInt(vertexVertices[0]));
-                vertexList[lastUpdated].setY(Integer.parseInt(vertexVertices[1])*(-1));
+                vertexList[lastUpdated].setX(Double.parseDouble(vertexVertices[0]));
+                vertexList[lastUpdated].setY(Double.parseDouble(vertexVertices[1])*(-1));
                 vertexList[lastUpdated].setHasCoordinates();
                 lastUpdated++;
 

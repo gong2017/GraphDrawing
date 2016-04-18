@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Edge()
+comment1.params=firstEdgeVertex
+comment1.target=void\ setFirstEdgeVertex(Vertex)
+comment2.params=secondEdgeVertex
+comment2.target=void\ setSecondEdgeVertex(Vertex)
+comment3.params=g
+comment3.target=void\ drawStraight(java.awt.Graphics)
+comment4.params=g
+comment4.target=void\ drawOrthogonal(java.awt.Graphics)
+comment5.params=springVertex
+comment5.target=Vector\ getForce(Vertex)
+numComments=6

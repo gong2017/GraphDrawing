@@ -8,9 +8,11 @@ import javax.swing.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.Font;
+import java.awt.event.*;
 
 public class DrawPolygon extends JPanel {
     private Vertex[] vertexList;
+    private ArrayList<Edge> edges;
     private ArrayList<Integer> currentVertices;
     private Vertex currentVertex;
     private int lineType = 0; // Straight line
@@ -25,7 +27,7 @@ public class DrawPolygon extends JPanel {
 
     // Paints the graph on the screen
     @Override
-    public void paintComponent(Graphics g) 
+    public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         g.translate(getWidth()/2, getHeight()/2);
@@ -37,56 +39,56 @@ public class DrawPolygon extends JPanel {
             // Gives coordinates to the vertices without coordinates
             giveVerticesCoordinates(getWidth(), getHeight());
 
-            // Draws the edges between the vertices on the screen
-            for (int k = 1; k < vertexList.length; k++) {                
-                // Grab the vertex we would like to add edges from.
-                currentVertices = vertexList[k].getAdjacentVertices();
-
-                for (int j = 0; j < currentVertices.size(); j++) {
-                    currentVertex = vertexList[(int)currentVertices.get(j)];
-                    ((Graphics2D)g).setStroke(new BasicStroke(3));
-
-                    if (lineType == 0) {
-                        g.drawLine(vertexList[k].getX(), vertexList[k].getY(), currentVertex.getX(), currentVertex.getY());
-                    }
-                    else
-                    {
-                        g.drawLine(vertexList[k].getX(), vertexList[k].getY(), currentVertex.getX(), vertexList[k].getY());
-                        g.drawLine(currentVertex.getX(), vertexList[k].getY(), currentVertex.getX(), currentVertex.getY());
-                    }
+            // Print out edges
+            for (int j = 0; j < edges.size(); j++) {
+                if (lineType == 0) {
+                    edges.get(j).drawStraight(g);
+                } else {
+                    edges.get(j).drawOrthogonal(g);
                 }
             }
 
-            // Draws the vertices on the screen
-            for ( int i = 1; i < vertexList.length; i++) {
-                ((Graphics2D)g).setPaint(new Color(255, 102, 102));
-                g.fillOval((vertexList[i].getX())-(30/2), (vertexList[i].getY())-(30/2), 30, 30);
-                ((Graphics2D)g).setPaint(Color.BLACK);
-                g.setFont(f);
-                g.drawString(String.valueOf(i), vertexList[i].getX()-5, vertexList[i].getY()+5);
-            } 
+            // Print out vertices
+            for (int i = 1; i < vertexList.length; i++) {
+                vertexList[i].Draw(g);
+            }
+        }
+    }
+
+    // Runs the Eades algorithm
+    public void eades() {        
+        for (int k = 1; k < vertexList.length; k++) {
+            vertexList[k].resetAcceleration();
+            vertexList[k].calculateForce(vertexList);
+            vertexList[k].calculateEdgeForce();
+            vertexList[k].calculateDisplacement();
         }
     }
 
     // Give initial coordinates to the vertices
     public void giveVerticesCoordinates(int width, int height)
     {
-        int x = (width/2) * (-1) + 50;
-        int y = ((height/2) * (-1)) + 50;        
-
-        for ( int i = 1; i < vertexList.length; i++) {            
+        Random random = new Random();
+        int max = 500/2;
+        int min = -500/2;
+        int x;
+        int y;        
+        
+        for ( int i = 1; i < vertexList.length; i++) {
             if(!vertexList[i].hasCoordinates()) {
-                if (x >= getWidth()/2-50)
-                {
-                    x = (width/2) * (-1) + 50;
-                    y += 50;
-                }                
-
+                x = random.nextInt(max - min + 1) + min;
+                y = random.nextInt(max - min + 1) + min;
+                
                 vertexList[i].setX(x);
                 vertexList[i].setY(y);
-                x += 50;
+                vertexList[i].hasCoordinates();
             }
         }
+    }
+
+    // Update the edges of the graph
+    public void updateEdges(ArrayList<Edge> edges) {
+        this.edges = edges;
     }
 
     // Updates the list of vertices we are currently processing
@@ -104,5 +106,12 @@ public class DrawPolygon extends JPanel {
     public void updateAesthetic(int aesthetic)
     {
         currentAesthetic = aesthetic;
+
+        if (aesthetic == 0) {
+            for (int m = 0; m < 100; m++) {
+                eades();
+                repaint();
+            }
+        }
     }
 }
