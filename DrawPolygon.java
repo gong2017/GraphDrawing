@@ -73,12 +73,12 @@ public class DrawPolygon extends JPanel {
         int min = -200/2;
         int x;
         int y;        
-        
+
         for ( int i = 1; i < vertexList.length; i++) {
             if(!vertexList[i].hasCoordinates()) {
                 x = random.nextInt(max - min + 1) + min;
                 y = random.nextInt(max - min + 1) + min;
-                
+
                 vertexList[i].setX(x);
                 vertexList[i].setY(y);
                 vertexList[i].hasCoordinates();
@@ -94,6 +94,12 @@ public class DrawPolygon extends JPanel {
     // Updates the list of vertices we are currently processing
     public void updateVertices(Vertex[] vertexList) {
         this.vertexList = vertexList;
+    }
+
+    public void updateVertexColor(Color color) {
+        for (int i = 1; i < vertexList.length; i++) {
+            vertexList[i].updateColor(color);
+        }
     }
 
     // Updates the line type to display in the graph

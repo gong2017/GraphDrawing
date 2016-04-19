@@ -11,18 +11,32 @@ import java.awt.event.*;
 
 public class AestheticsPanel extends Panel
 {
+    Color blueColor = new Color(0,154,255);
+    Color redColor = new Color(255, 102, 102);
+    Color greenColor = new Color(0, 255, 153);
     private JLabel aesthetics = new JLabel("Choose aesthetics: ");
     private JButton eades = new JButton("(Step through) Eades");
+    private JButton blueVertices = new JButton("Blue Vertices");
+    private JButton redVertices = new JButton("Red Vertices");
+    private JButton greenVertices = new JButton("Green Vertices");
 
     // AestheticsPanel object constructor
     public AestheticsPanel(Window window)
     {
         super(window);
-        this.setBorder(BorderFactory.createEmptyBorder(0,10,550,0));
+        this.setBorder(BorderFactory.createEmptyBorder(0,10,350,0));
 
         aesthetics.setForeground(Color.WHITE);
         this.add(aesthetics);
+        
         setButtonDetails(eades);
+        setButtonDetails(blueVertices);
+        setButtonDetails(redVertices);
+        setButtonDetails(greenVertices);
+        
+        blueVertices.setBackground(blueColor);
+        redVertices.setBackground(redColor);
+        greenVertices.setBackground(greenColor);
     }
 
     // Sets button details, adds action listener, adds to panel
@@ -39,9 +53,15 @@ public class AestheticsPanel extends Panel
     public void actionPerformed(ActionEvent e)
     {
         if (e.getSource() == eades) {
-            eades.setSelected(true);
             window.updateAesthetic(0);
+        } else if (e.getSource() == blueVertices) {
+            window.updateVertexColor(blueColor);
+        } else if (e.getSource() == redVertices) {
+            window.updateVertexColor(redColor);
+        } else if (e.getSource() == greenVertices) {
+            window.updateVertexColor(greenColor);
         }
+        
 
         window.repaint();
     }

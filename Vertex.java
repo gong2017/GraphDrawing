@@ -37,6 +37,10 @@ public class Vertex
     public Vector getPosition() {
         return position;
     }
+    
+    public void updateColor(Color color) {
+        this.color = color;
+    }
 
     // Resets acceleration
     public void resetAcceleration() {
@@ -141,6 +145,7 @@ public class Vertex
         adjacentVertices.add(newVertex);
     }
 
+    // Adds an edge to the vertex
     public void addEdge(Edge edge) {
         edges.add(edge);
     }

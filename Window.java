@@ -80,8 +80,7 @@ public class Window extends JFrame
     }    
 
     // Updates the line type in the graph
-    public void updateLineType(int lineType)
-    {
+    public void updateLineType(int lineType) {
         graph.updateLineType(lineType);
     }
 
@@ -95,5 +94,9 @@ public class Window extends JFrame
     public void updateAesthetic(int aesthetic)
     {
         graph.updateAesthetic(aesthetic);
+    }
+    
+    public void updateVertexColor(Color color) {
+        graph.updateVertexColor(color);
     }
 }
