@@ -14,7 +14,8 @@ import java.io.*;
 public class GraphPanel extends Panel
 {
     private JLabel graphLabel = new JLabel("Choose graph: ");
-    private String[] graphStringList = {"TestFile", "StarFile"}; 
+    private String[] graphStringList = {"K3", "K4", "K5", "Starburst",
+        "HoneyComb", "Spoon", "Pentagon", "StickPerson"}; 
     private JComboBox graphList;
     private Vertex[] vertexList;
     private ArrayList<Edge> edges = new ArrayList<Edge>();

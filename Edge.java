@@ -12,10 +12,11 @@ public class Edge
     private Vertex firstEdgeVertex;
     private Vertex secondEdgeVertex;
     private double length;
+    private double temperatureConstant = .01;
 
     // Edge object constructor
     public Edge() {
-        length = 25;
+        length = 15;                
     }
 
     // Sets the first vertex of the edge
@@ -27,7 +28,7 @@ public class Edge
     public void setSecondEdgeVertex(Vertex secondEdgeVertex) {
         this.secondEdgeVertex = secondEdgeVertex;
     }
-
+    
     // Draws the edge on the screen
     public void drawStraight(Graphics g) {
         g.setColor(Color.black);
@@ -63,7 +64,8 @@ public class Edge
         }
 
         temperature = force.getLength() - 10 * length;
-        cooling = Math.signum(temperature) * Math.log(Math.abs(temperature)) * 0.01;
+        //cooling = temperature * temperatureConstant;
+        cooling = Math.signum(temperature) * Math.log(Math.abs(temperature)) * temperatureConstant;
         force = force.getUnitVector().multiply(cooling);
 
         return force;

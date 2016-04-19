@@ -69,8 +69,8 @@ public class DrawPolygon extends JPanel {
     public void giveVerticesCoordinates(int width, int height)
     {
         Random random = new Random();
-        int max = 500/2;
-        int min = -500/2;
+        int max = 200/2;
+        int min = -200/2;
         int x;
         int y;        
         
