@@ -85,17 +85,16 @@ public class Window extends JFrame
     }
 
     // Updates the graph details in the details panel.
-    public void updateDetails(String graphName, int numVertices, int numEdges)
-    {
+    public void updateDetails(String graphName, int numVertices, int numEdges)  {
         detailsPanel.updateDetails(graphName, numVertices, numEdges);
     }
 
     // Updates the graph to show the current aesthetic choice
-    public void updateAesthetic(int aesthetic)
-    {
+    public void updateAesthetic(int aesthetic) {
         graph.updateAesthetic(aesthetic);
     }
     
+    // Uptes the vertex color
     public void updateVertexColor(Color color) {
         graph.updateVertexColor(color);
     }

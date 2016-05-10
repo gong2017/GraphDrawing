@@ -96,6 +96,7 @@ public class DrawPolygon extends JPanel {
         this.vertexList = vertexList;
     }
 
+    // Updates the colours of the vertices
     public void updateVertexColor(Color color) {
         for (int i = 1; i < vertexList.length; i++) {
             vertexList[i].updateColor(color);
