@@ -48,3 +48,6 @@ Temporary Items
 
 # File extension
 *.class
+*.ctxt
+
+package.bluej
